@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Ogr">
+      <UniqueIdentifier>{debd7363-42c0-4967-84d8-01a2fccb47d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Ogr">
+      <UniqueIdentifier>{76fb7e81-12cf-4ef1-a0db-1109124eff8c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Driver.h">
+      <Filter>Header Files\Ogr</Filter>
+    </ClInclude>
+    <ClInclude Include="Datasource.h">
+      <Filter>Header Files\Ogr</Filter>
+    </ClInclude>
+    <ClInclude Include="LayerCollection.h">
+      <Filter>Header Files\Ogr</Filter>
+    </ClInclude>
+    <ClInclude Include="Layer.h">
+      <Filter>Header Files\Ogr</Filter>
+    </ClInclude>
+    <ClInclude Include="FeatureDefinition.h">
+      <Filter>Header Files\Ogr</Filter>
+    </ClInclude>
+    <ClInclude Include="FieldDefinitionCollection.h">
+      <Filter>Header Files\Ogr</Filter>
+    </ClInclude>
+    <ClInclude Include="FieldDefinition.h">
+      <Filter>Header Files\Ogr</Filter>
+    </ClInclude>
+    <ClInclude Include="FieldType.h">
+      <Filter>Header Files\Ogr</Filter>
+    </ClInclude>
+    <ClInclude Include="Geometry.h">
+      <Filter>Header Files\Ogr</Filter>
+    </ClInclude>
+    <ClInclude Include="Feature.h">
+      <Filter>Header Files\Ogr</Filter>
+    </ClInclude>
+    <ClInclude Include="FeatureCollection.h">
+      <Filter>Header Files\Ogr</Filter>
+    </ClInclude>
+    <ClInclude Include="PointGeometry.h">
+      <Filter>Header Files\Ogr</Filter>
+    </ClInclude>
+    <ClInclude Include="Polygon.h">
+      <Filter>Header Files\Ogr</Filter>
+    </ClInclude>
+    <ClInclude Include="Surface.h">
+      <Filter>Header Files\Ogr</Filter>
+    </ClInclude>
+    <ClInclude Include="SpatialReference.h">
+      <Filter>Header Files\Ogr</Filter>
+    </ClInclude>
+    <ClInclude Include="GeometryTextFormat.h">
+      <Filter>Header Files\Ogr</Filter>
+    </ClInclude>
+    <ClInclude Include="SpatialReferenceExportFormat.h">
+      <Filter>Header Files\Ogr</Filter>
+    </ClInclude>
+    <ClInclude Include="SpatialReferenceImportFormat.h">
+      <Filter>Header Files\Ogr</Filter>
+    </ClInclude>
+    <ClInclude Include="Curve.h">
+      <Filter>Header Files\Ogr</Filter>
+    </ClInclude>
+    <ClInclude Include="LineString.h">
+      <Filter>Header Files\Ogr</Filter>
+    </ClInclude>
+    <ClInclude Include="PointGeometryEnumerator.h">
+      <Filter>Header Files\Ogr</Filter>
+    </ClInclude>
+    <ClInclude Include="LinearRing.h">
+      <Filter>Header Files\Ogr</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AssemblyInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Driver.cpp">
+      <Filter>Source Files\Ogr</Filter>
+    </ClCompile>
+    <ClCompile Include="DataSource.cpp">
+      <Filter>Source Files\Ogr</Filter>
+    </ClCompile>
+    <ClCompile Include="Layer.cpp">
+      <Filter>Source Files\Ogr</Filter>
+    </ClCompile>
+    <ClCompile Include="LayerCollection.cpp">
+      <Filter>Source Files\Ogr</Filter>
+    </ClCompile>
+    <ClCompile Include="FeatureDefinition.cpp">
+      <Filter>Source Files\Ogr</Filter>
+    </ClCompile>
+    <ClCompile Include="FieldDefinitionCollection.cpp">
+      <Filter>Source Files\Ogr</Filter>
+    </ClCompile>
+    <ClCompile Include="FieldDefinition.cpp">
+      <Filter>Source Files\Ogr</Filter>
+    </ClCompile>
+    <ClCompile Include="Feature.cpp">
+      <Filter>Source Files\Ogr</Filter>
+    </ClCompile>
+    <ClCompile Include="FeatureCollection.cpp">
+      <Filter>Source Files\Ogr</Filter>
+    </ClCompile>
+    <ClCompile Include="Geometry.cpp">
+      <Filter>Source Files\Ogr</Filter>
+    </ClCompile>
+    <ClCompile Include="PointGeometry.cpp">
+      <Filter>Source Files\Ogr</Filter>
+    </ClCompile>
+    <ClCompile Include="Polygon.cpp">
+      <Filter>Source Files\Ogr</Filter>
+    </ClCompile>
+    <ClCompile Include="Surface.cpp">
+      <Filter>Source Files\Ogr</Filter>
+    </ClCompile>
+    <ClCompile Include="SpatialReference.cpp">
+      <Filter>Source Files\Ogr</Filter>
+    </ClCompile>
+    <ClCompile Include="LineString.cpp">
+      <Filter>Source Files\Ogr</Filter>
+    </ClCompile>
+    <ClCompile Include="Curve.cpp">
+      <Filter>Source Files\Ogr</Filter>
+    </ClCompile>
+    <ClCompile Include="PointGeometryEnumerator.cpp">
+      <Filter>Source Files\Ogr</Filter>
+    </ClCompile>
+    <ClCompile Include="LinearRing.cpp">
+      <Filter>Source Files\Ogr</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="app.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
