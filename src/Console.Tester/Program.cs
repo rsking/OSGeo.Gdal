@@ -11,10 +11,7 @@
     {
         static void Main(string[] args)
         {
-            using (
-                var datasource =
-                    DataSource.Open(
-                        "C:\\Projects\\2078 DPI Powerline Bushfire Consequences Mapping\\vf\\src\\GeomaticTechnologies.Dpi.Web\\App_Data\\MB_2011_VIC.shp"))
+            using (var datasource = DataSource.Open("ogrtest_utf.sqlite"))
             {
                 Console.WriteLine(datasource.Name);
                 foreach (var layer in datasource.Layers)
@@ -27,8 +24,16 @@
                        Console.WriteLine(field.Name);
                     }
 
-                    foreach (var feature in layer.Features.Where(temp => temp.Geometry != null))
+                    foreach (var feature in layer.Features)
                     {
+                        // output the values
+                        var fieldString = feature.GetString(21);
+
+                        if (feature.Geometry == null)
+                        {
+                            continue;
+                        }
+
                         var geometry = feature.Geometry;
 
                         var wkt = geometry.ToString();

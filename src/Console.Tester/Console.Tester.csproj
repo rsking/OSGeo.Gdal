@@ -85,6 +85,11 @@
       <Name>OSGeo.Gdal %28Visual Studio 2010%29</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="ogrtest_utf.sqlite">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy /dy "$(SolutionDir)..\lib\external\Gdal\$(PlatformTarget)\bin\*.dll" "$(TargetDir)"</PostBuildEvent>
