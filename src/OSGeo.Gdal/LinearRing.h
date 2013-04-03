@@ -1,4 +1,5 @@
 #pragma once
+
 #include "LineString.h"
 
 namespace OSGeo

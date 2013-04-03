@@ -1,4 +1,5 @@
 #pragma once
+
 #include "Curve.h"
 
 using namespace System::Collections;

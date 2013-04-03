@@ -1,4 +1,5 @@
 #pragma once
+
 #include <ogr_geometry.h>
 
 using namespace System::Collections;
