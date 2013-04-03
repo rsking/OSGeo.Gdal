@@ -1,7 +1,10 @@
 #include "Stdafx.h"
+#include <msclr/marshal.h>
 #include "Feature.h"
 #include "Geometry.h"
+#include "StringMarshaller.h"
 
+//using namespace OSGeo;
 using namespace OSGeo::Ogr;
 
 Feature::Feature(OGRFeature* feature)
@@ -26,4 +29,9 @@ Feature::!Feature()
 		OGRFeature::DestroyFeature(this->_feature);
 		this->_feature = NULL;
 	}
+}
+
+System::String^ Feature::GetString(int i)
+{
+	return StringMarshaller::GetStringAsUtf8(this->_feature->GetFieldAsString(i));
 }
