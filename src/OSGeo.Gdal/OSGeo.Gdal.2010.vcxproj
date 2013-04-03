@@ -142,8 +142,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Curve.h" />
+    <ClInclude Include="DataSourceCapabilities.h" />
     <ClInclude Include="Driver.h" />
     <ClInclude Include="Datasource.h" />
+    <ClInclude Include="DriverCapabilities.h" />
     <ClInclude Include="Feature.h" />
     <ClInclude Include="FeatureCollection.h" />
     <ClInclude Include="FeatureDefinition.h" />
@@ -152,6 +154,7 @@
     <ClInclude Include="FieldType.h" />
     <ClInclude Include="Geometry.h" />
     <ClInclude Include="Layer.h" />
+    <ClInclude Include="LayerCapabilities.h" />
     <ClInclude Include="LayerCollection.h" />
     <ClInclude Include="LinearRing.h" />
     <ClInclude Include="LineString.h" />
@@ -163,6 +166,7 @@
     <ClInclude Include="SpatialReferenceExportFormat.h" />
     <ClInclude Include="SpatialReferenceImportFormat.h" />
     <ClInclude Include="Stdafx.h" />
+    <ClInclude Include="StringMarshaller.h" />
     <ClInclude Include="Surface.h" />
     <ClInclude Include="GeometryTextFormat.h" />
   </ItemGroup>
@@ -191,6 +195,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="StringMarshaller.cpp" />
     <ClCompile Include="Surface.cpp" />
   </ItemGroup>
   <ItemGroup>

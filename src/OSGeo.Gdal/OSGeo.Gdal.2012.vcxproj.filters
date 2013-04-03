@@ -93,6 +93,12 @@
     <ClInclude Include="LinearRing.h">
       <Filter>Header Files\Ogr</Filter>
     </ClInclude>
+    <ClInclude Include="DriverCapabilities.h">
+      <Filter>Header Files\Ogr</Filter>
+    </ClInclude>
+    <ClInclude Include="StringMarshaller.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp">
@@ -154,6 +160,9 @@
     </ClCompile>
     <ClCompile Include="LinearRing.cpp">
       <Filter>Source Files\Ogr</Filter>
+    </ClCompile>
+    <ClCompile Include="StringMarshaller.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
