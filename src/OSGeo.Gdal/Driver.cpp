@@ -8,6 +8,18 @@ using namespace OSGeo::Ogr;
 Driver::Driver(OGRSFDriver* driver)
 {
 	this->_driver = driver;
+
+	// get the capabilities
+	this->_capabilities = DriverCapabilities::None;
+	if (this->_driver->TestCapability(ODrCCreateDataSource))
+	{
+		this->_capabilities = this->_capabilities | DriverCapabilities::CreateDataSource;
+	}
+
+	if (this->_driver->TestCapability(ODrCDeleteDataSource))
+	{
+		this->_capabilities = this->_capabilities | DriverCapabilities::DeleteDataSource;
+	}
 }
 
 DataSource^ Driver::Open(String^ name)
@@ -68,4 +80,9 @@ String^ Driver::Name::get()
 OGRSFDriver* Driver::Handle::get()
 {
 	return this->_driver;
+}
+
+DriverCapabilities Driver::Capabilities::get()
+{
+	return this->_capabilities;
 }

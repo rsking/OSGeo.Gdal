@@ -1,7 +1,7 @@
 #pragma once
 
-#include <msclr/marshal.h>
 #include <ogrsf_frmts.h>
+#include "DriverCapabilities.h"
 
 using namespace System;
 
@@ -16,6 +16,8 @@ namespace OSGeo
 		private:
 			/// <summary>The GDAL driver object.</summary>
 			OGRSFDriver* _driver;
+
+			DriverCapabilities _capabilities;
 		internal:
 			/// <summary>Initialises a new instance of the <see cref="Driver" /> class using the specified driver object.Driver</summary>
 			Driver(OGRSFDriver* driver);
@@ -44,6 +46,11 @@ namespace OSGeo
 			property String^ Name
 			{
 				String^ get();
+			}
+
+			property DriverCapabilities Capabilities
+			{
+				DriverCapabilities get();
 			}
 		};
 	}

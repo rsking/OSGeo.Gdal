@@ -1,7 +1,7 @@
 #pragma once
 
-#include <msclr/marshal.h>
 #include <ogrsf_frmts.h>
+#include "DataSourceCapabilities.h"
 
 using namespace System;
 
@@ -20,6 +20,8 @@ namespace OSGeo
 
 			/// <summary>The driver.</summary>
 			OSGeo::Ogr::Driver^ _driver;
+
+			DataSourceCapabilities _capabilities;
 
 			/// <summary></summary>
 			~DataSource();
@@ -52,6 +54,11 @@ namespace OSGeo
 			property String^ Name
 			{
 				String^ get();
+			}
+
+			property DataSourceCapabilities Capabilities
+			{
+				DataSourceCapabilities get();
 			}
 
 			/// <summary>Gets the layers in the dataset.</summary>

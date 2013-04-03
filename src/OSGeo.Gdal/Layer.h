@@ -1,4 +1,7 @@
+#pragma once
+
 #include <ogrsf_frmts.h>
+#include "LayerCapabilities.h"
 
 using namespace System;
 
@@ -14,6 +17,7 @@ namespace OSGeo
 		private:
 			FeatureCollection^ _features;
 			FeatureDefinition^ _definition;
+			LayerCapabilities _capabilities;
 			OGRLayer* _layer;
 			~Layer();
 		protected:
@@ -34,6 +38,11 @@ namespace OSGeo
 			property FeatureCollection^ Features
 			{
 				FeatureCollection^ get();
+			}
+
+			property LayerCapabilities Capabilities
+			{
+				LayerCapabilities get();
 			}
 
 			void Reset();

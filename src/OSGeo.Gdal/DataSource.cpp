@@ -11,6 +11,18 @@ using namespace OSGeo::Ogr;
 DataSource::DataSource(OGRDataSource* dataSource)
 {
 	this->_dataSource = dataSource;
+
+	this->_capabilities = DataSourceCapabilities::None;
+	if (this->_dataSource->TestCapability(ODsCCreateLayer))
+	{
+		this->_capabilities = this->_capabilities | DataSourceCapabilities::CreateLayer;
+	}
+
+	if (this->_dataSource->TestCapability(ODsCDeleteLayer))
+	{
+		this->_capabilities = this->_capabilities | DataSourceCapabilities::DeleteLayer;
+	}
+
 	this->_driver = gcnew OSGeo::Ogr::Driver(this->_dataSource->GetDriver());
 }
 
@@ -40,6 +52,11 @@ DataSource^ DataSource::Copy(String^ name)
 OSGeo::Ogr::Driver^ DataSource::Driver::get()
 {
 	return this->_driver;
+}
+
+DataSourceCapabilities DataSource::Capabilities::get()
+{
+	return this->_capabilities;
 }
 
 OGRDataSource* DataSource::Handle::get()
