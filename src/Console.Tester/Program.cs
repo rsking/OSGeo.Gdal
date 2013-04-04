@@ -28,6 +28,8 @@
                     {
                         // output the values
                         var fieldString = feature.GetString(21);
+                        var values = new object[feature.FieldCount];
+                        var valueCount = feature.GetValues(values);
 
                         if (feature.Geometry == null)
                         {

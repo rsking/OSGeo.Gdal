@@ -10,6 +10,8 @@ namespace OSGeo
 		StringMarshaller(void);
 	public:
 		static String^ GetStringAsUtf8(const char *value);
+
+		static const char* FromUnicodeString(String^ value);
 	};
 }
 
