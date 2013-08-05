@@ -21,12 +21,13 @@ namespace OSGeo
 			/// <summary>The driver.</summary>
 			OSGeo::Ogr::Driver^ _driver;
 
+			/// <summary>The capabilities</summary>
 			DataSourceCapabilities _capabilities;
 
-			/// <summary></summary>
+			/// <summary>Disposes this instance.</summary>
 			~DataSource();
 		protected:
-			/// <summary></summary>
+			/// <summary>Finalises this instance.</summary>
 			!DataSource();
 		internal:
 			/// <summary>Initialises a new instance of the <see	cref="DataSource" /> class using the specified data source object.</summary>
