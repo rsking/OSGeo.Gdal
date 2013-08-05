@@ -115,6 +115,23 @@ String^ SpatialReference::ToString()
 	return this->ToString(OSGeo::Ogr::SpatialReferenceExportFormat::Wkt);
 }
 
+bool SpatialReference::Equals(System::Object^ other)
+{
+	SpatialReference^ srs = dynamic_cast<SpatialReference^>(other);
+
+	if (srs == nullptr)
+	{
+		return false;
+	}
+
+	return SpatialReference::Equals(srs);
+}
+
+bool SpatialReference::Equals(SpatialReference^ srs)
+{
+	return this->_srs->IsSame(srs->_srs) == TRUE;
+}
+
 String^ SpatialReference::ToString(SpatialReferenceExportFormat format)
 {
 	char* text;

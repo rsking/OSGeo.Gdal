@@ -65,10 +65,6 @@ namespace OSGeo
 			property OSGeo::Ogr::LayerCollection^ Layers
 			{
 				OSGeo::Ogr::LayerCollection^ get();
-				//{
-				//	return OSGeo::Ogr::LayerCollection::
-				//	return nullptr; // gcnew OSGeo::Ogr::LayerCollection(this->_dataSource);
-				//}
 			}
 
 			/// <summary>Copies this dataset to the specified name.</summary>

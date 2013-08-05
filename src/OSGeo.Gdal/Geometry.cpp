@@ -1,9 +1,11 @@
 #include "StdAfx.h"
 #include <msclr/marshal.h>
 #include "Geometry.h"
+#include "GeometryCollection.h"
 #include "PointGeometry.h"
 #include "Polygon.h"
 #include "LineString.h"
+#include "MultiPolygon.h"
 #include "SpatialReference.h"
 
 using namespace System;
@@ -31,16 +33,19 @@ Geometry^ Geometry::FromGeometry(OGRGeometry* geometry)
 			return gcnew OSGeo::Ogr::PointGeometry((OGRPoint*)geometry);
 		case wkbLineString:
 		case wkbLineString25D:
+			return gcnew OSGeo::Ogr::LineString((OGRLineString*)geometry);
 			break;
 		case wkbPolygon:
 			return gcnew OSGeo::Ogr::Polygon((OGRPolygon*)geometry);
-		case wkbMultiPoint:
 			break;
+		case wkbMultiPoint:
 		case wkbMultiLineString:
-			return gcnew OSGeo::Ogr::LineString((OGRLineString*)geometry);
+			break;
 		case wkbMultiPolygon:
+			return gcnew OSGeo::Ogr::MultiPolygon((OGRMultiPolygon*)geometry);
 			break;
 		case wkbGeometryCollection:
+			return gcnew OSGeo::Ogr::GeometryCollection((OGRGeometryCollection*)geometry);
 			break;
 		}
 	}

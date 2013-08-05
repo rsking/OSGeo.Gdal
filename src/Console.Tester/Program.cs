@@ -1,17 +1,24 @@
-﻿namespace Console.Tester
+﻿// -----------------------------------------------------------------------
+// <copyright file="Program.cs" company="GeomaticTechnologies">
+// Copyright (c) 2013, GeomaticTechnologies. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
+
+namespace Console.Tester
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
 
-    using OSGeo.Ogr;
-
-    class Program
+    /// <summary>
+    /// The testing program.
+    /// </summary>
+    internal class Program
     {
-        static void Main(string[] args)
+        /// <summary>
+        /// Entry point for the program.
+        /// </summary>
+        private static void Main()
         {
-            using (var datasource = DataSource.Open("ogrtest_utf.sqlite"))
+            using (var datasource = OSGeo.Ogr.DataSource.Open("ogrtest_utf.sqlite"))
             {
                 Console.WriteLine(datasource.Name);
                 foreach (var layer in datasource.Layers)
@@ -31,6 +38,11 @@
                         var values = new object[feature.FieldCount];
                         var valueCount = feature.GetValues(values);
 
+                        foreach (var value in values)
+                        {
+                            Console.WriteLine(value);
+                        }
+
                         if (feature.Geometry == null)
                         {
                             continue;
@@ -40,16 +52,15 @@
 
                         var wkt = geometry.ToString();
                         var wkb = geometry.ToBinary();
-                        var json = geometry.ToString(GeometryTextFormat.Json);
-                        var gml = geometry.ToString(GeometryTextFormat.Gml);
-                        var kml = geometry.ToString(GeometryTextFormat.Kml);
-                        //Console.WriteLine(wkt);
+                        Console.WriteLine("JSON {0}", geometry.ToString(OSGeo.Ogr.GeometryTextFormat.Json));
+                        Console.WriteLine("GML {0}", geometry.ToString(OSGeo.Ogr.GeometryTextFormat.Gml));
+                        Console.WriteLine("KML {0}", geometry.ToString(OSGeo.Ogr.GeometryTextFormat.Kml));
 
-                        var fromWkt = Geometry.FromText(wkt);
-                        var fromWkb = Geometry.FromWkb(wkb);
+                        Console.WriteLine("WKT {0}", OSGeo.Ogr.Geometry.FromText(wkt));
+                        Console.WriteLine("WKB {0}", OSGeo.Ogr.Geometry.FromWkb(wkb));
 
                         var spatialReference = geometry.SpatialReference;
-                        var reft = spatialReference.ToString();
+                        Console.WriteLine("SR {0}", spatialReference);
 
                         var surface = geometry as OSGeo.Ogr.Surface;
                         if (surface != null)

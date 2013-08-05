@@ -8,7 +8,7 @@ namespace OSGeo
 {
 	namespace Ogr
 	{
-		public ref class SpatialReference
+		public ref class SpatialReference : public System::IEquatable<SpatialReference^>
 		{
 		private:
 			OGRSpatialReference* _srs;
@@ -38,6 +38,10 @@ namespace OSGeo
 			SpatialReference^ CloneGeographic();
 
 			virtual System::String^ ToString() override;
+
+			virtual bool Equals(System::Object^ other) override;
+
+			virtual bool Equals(SpatialReference^ other);
 
 			System::String^ ToString(SpatialReferenceExportFormat format);
 		};

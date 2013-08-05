@@ -5,29 +5,29 @@
 using namespace System;
 using namespace OSGeo::Ogr;
 
-GeometryCollection::GeometryCollection(OGRGeometry* geometry)
+GeometryCollection::GeometryCollection(OGRGeometryCollection* geometryCollection) : Geometry(geometryCollection)
 {
-	this->_geometry = geometry;
+	this->_geometryCollection = geometryCollection;
 }
 
 int GeometryCollection::Count::get()
 {
-	return this->_geometry;
+	return this->_geometryCollection->getNumGeometries();
 }
 
 Generic::IEnumerator<Geometry^>^ GeometryCollection::GetEnumerator()
 {
-	return gcnew GeometryEnumerator(this->_geometry);
+	return gcnew GeometryEnumerator(this->_geometryCollection);
 }
 
 IEnumerator^ GeometryCollection::GetEnumeratorBase()
 {
-	return gcnew GeometryEnumerator(this->_geometry);
+	return gcnew GeometryEnumerator(this->_geometryCollection);
 }
 
-GeometryEnumerator::GeometryEnumerator(OGRLayer* layer)
+GeometryEnumerator::GeometryEnumerator(OGRGeometryCollection* geometryCollection)
 {
-	this->_geometry = geometry;
+	this->_geometryCollection = geometryCollection;
 }
 
 Geometry^ GeometryEnumerator::Current::get()
@@ -43,11 +43,16 @@ Object^ GeometryEnumerator::CurrentBase::get()
 bool GeometryEnumerator::MoveNext()
 {
 	this->ReleaseCurrentGeometry();
-	OGRGeometry* Geometry = this->_geometry->GetNextGeometry();
-	if (Geometry != NULL)
+	_currentIndex++;
+
+	if (this->_currentIndex < this->_geometryCollection->getNumGeometries())
 	{
-		this->_currentGeometry = gcnew Geometry(Geometry);
-		return true;
+		OGRGeometry* geometry = this->_geometryCollection->getGeometryRef(this->_currentIndex);
+		if (geometry != NULL)
+		{
+			this->_currentGeometry = Geometry::FromGeometry(geometry);
+			return true;
+		}
 	}
 
 	return false;
@@ -56,7 +61,7 @@ bool GeometryEnumerator::MoveNext()
 void GeometryEnumerator::Reset()
 {
 	this->ReleaseCurrentGeometry();
-	this->_layer->ResetReading();
+	_currentIndex = -1;
 }
 
 GeometryEnumerator::~GeometryEnumerator()

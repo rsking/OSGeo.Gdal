@@ -99,6 +99,18 @@
     <ClInclude Include="StringMarshaller.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GeometryCollection.h">
+      <Filter>Header Files\Ogr</Filter>
+    </ClInclude>
+    <ClInclude Include="MultiPolygon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DataSourceCapabilities.h">
+      <Filter>Header Files\Ogr</Filter>
+    </ClInclude>
+    <ClInclude Include="LayerCapabilities.h">
+      <Filter>Header Files\Ogr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp">
@@ -162,6 +174,12 @@
       <Filter>Source Files\Ogr</Filter>
     </ClCompile>
     <ClCompile Include="StringMarshaller.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeometryCollection.cpp">
+      <Filter>Source Files\Ogr</Filter>
+    </ClCompile>
+    <ClCompile Include="MultiPolygon.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -142,6 +142,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Curve.h" />
+    <ClInclude Include="DataSourceCapabilities.h" />
     <ClInclude Include="Driver.h" />
     <ClInclude Include="Datasource.h" />
     <ClInclude Include="DriverCapabilities.h" />
@@ -152,10 +153,13 @@
     <ClInclude Include="FieldDefinitionCollection.h" />
     <ClInclude Include="FieldType.h" />
     <ClInclude Include="Geometry.h" />
+    <ClInclude Include="GeometryCollection.h" />
     <ClInclude Include="Layer.h" />
+    <ClInclude Include="LayerCapabilities.h" />
     <ClInclude Include="LayerCollection.h" />
     <ClInclude Include="LinearRing.h" />
     <ClInclude Include="LineString.h" />
+    <ClInclude Include="MultiPolygon.h" />
     <ClInclude Include="PointGeometry.h" />
     <ClInclude Include="PointGeometryEnumerator.h" />
     <ClInclude Include="Polygon.h" />
@@ -179,10 +183,12 @@
     <ClCompile Include="FieldDefinition.cpp" />
     <ClCompile Include="FieldDefinitionCollection.cpp" />
     <ClCompile Include="Geometry.cpp" />
+    <ClCompile Include="GeometryCollection.cpp" />
     <ClCompile Include="Layer.cpp" />
     <ClCompile Include="LayerCollection.cpp" />
     <ClCompile Include="LinearRing.cpp" />
     <ClCompile Include="LineString.cpp" />
+    <ClCompile Include="MultiPolygon.cpp" />
     <ClCompile Include="PointGeometry.cpp" />
     <ClCompile Include="PointGeometryEnumerator.cpp" />
     <ClCompile Include="Polygon.cpp" />

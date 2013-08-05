@@ -1,20 +1,20 @@
 #pragma once
-#include <ogrsf_frmts.h>
 
+#include "Geometry.h"
+
+using namespace System;
 using namespace System::Collections;
 
 namespace OSGeo
 {
 	namespace Ogr
 	{
-		ref class Geometry;
-
-		public ref class GeometryCollection : public Generic::IEnumerable<Geometry^>
+		public ref class GeometryCollection : public Geometry, Generic::IEnumerable<Geometry^>
 		{
 		private:
-			OGRGeometry* _geometry;
+			OGRGeometryCollection* _geometryCollection;
 		internal:
-			GeometryCollection(OGRGeometry* geometry);
+			GeometryCollection(OGRGeometryCollection* geometryCollection);
 		public:
 			virtual Generic::IEnumerator<Geometry^>^ GetEnumerator() sealed = Generic::IEnumerable<Geometry^>::GetEnumerator;
 
@@ -30,10 +30,11 @@ namespace OSGeo
 		{
 		private:
 			Geometry^ _currentGeometry;
-			OGRGeometry* _geometry;
+			OGRGeometryCollection* _geometryCollection;
 			void ReleaseCurrentGeometry();
+			int _currentIndex;
 		public:
-			GeometryEnumerator(OGRGeometry* geometry);
+			GeometryEnumerator(OGRGeometryCollection* geometryCollection);
 			property Geometry^ Current { 
 				virtual Geometry^ get();
 			};
