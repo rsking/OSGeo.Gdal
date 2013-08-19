@@ -25,12 +25,11 @@ namespace Console.Tester
                 {
                     Console.WriteLine(layer.Name);
 
-                    var definition = layer.Definition;
                     foreach (var field in layer.Definition.Fields)
                     {
                        Console.WriteLine(field.Name);
                     }
-
+                    
                     foreach (var feature in layer.Features)
                     {
                         // output the values
@@ -60,7 +59,10 @@ namespace Console.Tester
                         Console.WriteLine("WKB {0}", OSGeo.Ogr.Geometry.FromWkb(wkb));
 
                         var spatialReference = geometry.SpatialReference;
-                        Console.WriteLine("SR {0}", spatialReference);
+                        if (spatialReference != null)
+                        {
+                            Console.WriteLine("SR {0}", spatialReference);
+                        }
 
                         var surface = geometry as OSGeo.Ogr.Surface;
                         if (surface != null)
