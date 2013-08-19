@@ -13,12 +13,6 @@ Curve::Curve(OGRCurve* curve) : Geometry(curve)
 	this->_curve = curve;
 }
 
-void Curve::SetGeometryObject(OGRGeometry* geometry)
-{
-	this->_curve = (OGRCurve*)geometry;
-	Geometry::SetGeometryObject(geometry);
-}
-
 double Curve::Length::get()
 {
 	return this->_curve->get_Length();

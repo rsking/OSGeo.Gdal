@@ -17,9 +17,3 @@ double Surface::Area::get()
 {
 	return this->_surface->get_Area();
 }
-
-void Surface::SetGeometryObject(OGRGeometry* geometry)
-{
-	this->_surface = (OGRSurface*)geometry;
-	Geometry::SetGeometryObject(geometry);
-}

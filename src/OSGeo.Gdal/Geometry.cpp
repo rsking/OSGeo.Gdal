@@ -88,11 +88,6 @@ Geometry^ Geometry::FromText(String^ text, GeometryTextFormat format)
 	return Geometry::FromGeometry(geometry);
 }
 
-void Geometry::SetGeometryObject(OGRGeometry* geometry)
-{
-	this->_geometry = geometry;
-}
-
 Geometry^ Geometry::Clone()
 {
 	return Geometry::FromGeometry(this->_geometry->clone());

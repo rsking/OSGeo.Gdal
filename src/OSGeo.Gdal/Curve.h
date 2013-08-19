@@ -20,9 +20,6 @@ namespace OSGeo
 
 			/// <summary><summary>
 			Curve(OGRCurve* surface);
-
-			/// <summary>Sets the geometry object.<summary>
-			virtual void SetGeometryObject(OGRGeometry* geometry) override;
 		public:
 			/// <summary>Gets the length of the curve.</summary>
 			property double Length

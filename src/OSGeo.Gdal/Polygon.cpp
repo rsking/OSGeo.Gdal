@@ -10,10 +10,8 @@ Polygon::Polygon(OGRPolygon* polygon) : Surface(polygon)
 	this->_polygon = polygon;
 }
 
-Polygon::Polygon()
+Polygon::Polygon() : Surface(this->_polygon = new OGRPolygon())
 {
-	this->_polygon = new OGRPolygon();
-	Surface::SetGeometryObject(this->_polygon);
 }
 
 Geometry^ Polygon::Clone()

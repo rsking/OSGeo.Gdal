@@ -5,10 +5,8 @@
 
 using namespace OSGeo::Ogr;
 
-LineString::LineString(void)
+LineString::LineString(void) : Curve(this->_lineString = new OGRLineString())
 {
-	this->_lineString = new OGRLineString();
-	Curve::SetGeometryObject(this->_lineString);
 }
 
 LineString::LineString(OGRLineString* lineString) : Curve(lineString)

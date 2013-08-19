@@ -26,9 +26,6 @@ namespace OSGeo
 			/// <summary>Initialises a new instance of the <see	cref="Geometry"/> class.</summary>
 			/// <param name="_geometry">The OGR geometry.</param>
 			Geometry(OGRGeometry* _geometry);
-			
-			/// <summary>Sets the geometry object.</summary>
-			virtual void SetGeometryObject(OGRGeometry* _geometry);
 		internal:
 			/// <summary>Gets the handle.</summary>
 			property OGRGeometry* Handle { OGRGeometry* get(); }
