@@ -4,6 +4,7 @@
 #include "Driver.h"
 #include "DataSource.h"
 #include "LayerCollection.h"
+#include "GdalException.h"
 
 using namespace System;
 using namespace OSGeo::Ogr;
@@ -39,6 +40,11 @@ DataSource^ DataSource::Open(String^ filename)
 	OGRDataSource *poDS;
 	char const* input = cxt.marshal_as<char const*>(filename);
 	poDS = OGRSFDriverRegistrar::Open(input, FALSE);
+	if (poDS == NULL)
+	{
+		throw GdalException::Create();
+	}
+
 	return gcnew OSGeo::Ogr::DataSource(poDS);
 }
 
