@@ -152,6 +152,7 @@
     <ClInclude Include="FieldDefinition.h" />
     <ClInclude Include="FieldDefinitionCollection.h" />
     <ClInclude Include="FieldType.h" />
+    <ClInclude Include="GdalException.h" />
     <ClInclude Include="Geometry.h" />
     <ClInclude Include="GeometryCollection.h" />
     <ClInclude Include="Layer.h" />
@@ -182,6 +183,7 @@
     <ClCompile Include="FeatureDefinition.cpp" />
     <ClCompile Include="FieldDefinition.cpp" />
     <ClCompile Include="FieldDefinitionCollection.cpp" />
+    <ClCompile Include="GdalException.cpp" />
     <ClCompile Include="Geometry.cpp" />
     <ClCompile Include="GeometryCollection.cpp" />
     <ClCompile Include="Layer.cpp" />

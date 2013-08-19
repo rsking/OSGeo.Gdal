@@ -111,6 +111,9 @@
     <ClInclude Include="LayerCapabilities.h">
       <Filter>Header Files\Ogr</Filter>
     </ClInclude>
+    <ClInclude Include="GdalException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp">
@@ -181,6 +184,9 @@
     </ClCompile>
     <ClCompile Include="MultiPolygon.cpp">
       <Filter>Source Files\Ogr</Filter>
+    </ClCompile>
+    <ClCompile Include="GdalException.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
