@@ -160,7 +160,7 @@ OGRGeometry* Geometry::Handle::get()
 
 SpatialReference^ Geometry::SpatialReference::get()
 {
-	return this->_srs == nullptr ? this->_srs = gcnew OSGeo::Ogr::SpatialReference(this->_geometry->getSpatialReference()) : this->_srs;
+	return this->_srs == nullptr ? this->_srs = OSGeo::Ogr::SpatialReference::FromOGRSpatialReference(this->_geometry->getSpatialReference()) : this->_srs;
 }
 
 void Geometry::SpatialReference::set(OSGeo::Ogr::SpatialReference^ value)

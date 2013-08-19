@@ -12,7 +12,7 @@ namespace OSGeo
 		ref class Driver;
 		ref class LayerCollection;
 
-		public ref class DataSource
+		public ref class DataSource sealed
 		{
 		private:
 			/// <summary>The data source object.</summary>
@@ -23,12 +23,12 @@ namespace OSGeo
 
 			/// <summary>The capabilities</summary>
 			DataSourceCapabilities _capabilities;
-
-			/// <summary>Disposes this instance.</summary>
-			~DataSource();
-		protected:
+			
 			/// <summary>Finalises this instance.</summary>
 			!DataSource();
+		protected:
+			/// <summary>Disposes this instance.</summary>
+			~DataSource();
 		internal:
 			/// <summary>Initialises a new instance of the <see	cref="DataSource" /> class using the specified data source object.</summary>
 			DataSource(OGRDataSource* dataSource);
@@ -57,6 +57,7 @@ namespace OSGeo
 				String^ get();
 			}
 
+			/// <summary>Gets the capabilities</summary>
 			property DataSourceCapabilities Capabilities
 			{
 				DataSourceCapabilities get();

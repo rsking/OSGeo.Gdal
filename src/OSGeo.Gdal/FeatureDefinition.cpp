@@ -9,19 +9,6 @@ FeatureDefinition::FeatureDefinition(OGRFeatureDefn* featureDefinition)
 	this->_featureDefinition = featureDefinition;
 }
 
-FeatureDefinition::~FeatureDefinition()
-{
-}
-
-FeatureDefinition::!FeatureDefinition()
-{
-	if (this->_featureDefinition != NULL)
-	{
-		OGRFeatureDefn::DestroyFeatureDefn(this->_featureDefinition);
-		this->_featureDefinition = NULL;
-	}
-}
-
 FieldDefinitionCollection^ FeatureDefinition::Fields::get()
 {
 	if (this->_fields == nullptr)

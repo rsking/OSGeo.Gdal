@@ -90,7 +90,6 @@ Layer::Layer(OGRLayer* layer)
 
 Layer::~Layer()
 {
-	//this->!Layer();
 	if (this->_definition != nullptr)
 	{
 		this->_definition->~FeatureDefinition();

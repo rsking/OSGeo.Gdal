@@ -11,17 +11,20 @@ namespace OSGeo
 	{
 		ref class DataSource;
 
-		public ref class Driver
+		/// <summary>Represents an operational format driver.</summary>
+		public ref class Driver sealed
 		{
 		private:
 			/// <summary>The GDAL driver object.</summary>
 			OGRSFDriver* _driver;
 
+			/// <summary>The driver capabilities.</summary>
 			DriverCapabilities _capabilities;
 		internal:
 			/// <summary>Initialises a new instance of the <see cref="Driver" /> class using the specified driver object.Driver</summary>
 			Driver(OGRSFDriver* driver);
 
+			/// <summary>Gets the driver handle.</summary>
 			property OGRSFDriver* Handle 
 			{ 
 				OGRSFDriver* get();
@@ -36,10 +39,10 @@ namespace OSGeo
 			/// <summary>This method attempts to create a new data source based on the passed driver.</summary>
 			DataSource^ CreateDataSource(String^ name);
 
-			/// <summary>This method creates a new datasource by copying all the layers from the source datasource.</summary>
+			/// <summary>This method creates a new data source by copying all the layers from the source data source.</summary>
 			DataSource^ CopyDataSource(DataSource sourceDataSource, String^ name, String^ options); 
 
-			/// <summary>Delete a datasource.</summary>
+			/// <summary>Delete a data source.</summary>
 			void DeleteDataSource(String^ name);
 
 			/// <summary>Gets the name of the driver.</summary>
@@ -48,6 +51,7 @@ namespace OSGeo
 				String^ get();
 			}
 
+			/// <summary>Gets the capabilities.</summary>
 			property DriverCapabilities Capabilities
 			{
 				DriverCapabilities get();

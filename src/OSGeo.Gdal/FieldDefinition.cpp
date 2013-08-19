@@ -37,5 +37,3 @@ void FieldDefinition::Type::set(FieldType value)
 {
 	this->_fieldDefinition->SetType((OGRFieldType)value);
 }
-
-

@@ -102,13 +102,13 @@
     <ClInclude Include="GeometryCollection.h">
       <Filter>Header Files\Ogr</Filter>
     </ClInclude>
-    <ClInclude Include="MultiPolygon.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="DataSourceCapabilities.h">
       <Filter>Header Files\Ogr</Filter>
     </ClInclude>
     <ClInclude Include="LayerCapabilities.h">
+      <Filter>Header Files\Ogr</Filter>
+    </ClInclude>
+    <ClInclude Include="MultiPolygon.h">
       <Filter>Header Files\Ogr</Filter>
     </ClInclude>
   </ItemGroup>
@@ -180,7 +180,7 @@
       <Filter>Source Files\Ogr</Filter>
     </ClCompile>
     <ClCompile Include="MultiPolygon.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Ogr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

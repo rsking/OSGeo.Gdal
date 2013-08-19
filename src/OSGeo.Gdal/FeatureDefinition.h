@@ -6,18 +6,20 @@ namespace OSGeo
 {
 	namespace Ogr
 	{
-		public ref class FeatureDefinition
+		/// <summary>Definition of a feature class or feature layer.</summary>
+		public ref class FeatureDefinition sealed
 		{
 		private:
+			/// <summary>The field definition collection.</summary>
 			FieldDefinitionCollection^ _fields;
+
+			/// <summary>The feature definition.</summary>
 			OGRFeatureDefn* _featureDefinition;
-			~FeatureDefinition();
-		protected:
-			/// <summary></summary>
-			!FeatureDefinition();
 		internal:
+			/// <summary>Initialises a new instance of the <see cref="FeatureDefinition"/> class.</summary>
 			FeatureDefinition(OGRFeatureDefn* featureDefinition);
 		public:
+			/// <summary>Gets the field definitions.</summary>
 			property FieldDefinitionCollection^ Fields
 			{
 				FieldDefinitionCollection^ get();

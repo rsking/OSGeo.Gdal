@@ -76,6 +76,7 @@ LayerCollection^ DataSource::Layers::get()
 	return gcnew LayerCollection(this->_dataSource);
 }
 
+// Finalise this instance.
 DataSource::!DataSource()
 {
 	if (this->_dataSource != NULL)
@@ -85,6 +86,7 @@ DataSource::!DataSource()
 	}
 }
 
+// Dispose this instance.
 DataSource::~DataSource()
 {
 	this->!DataSource();

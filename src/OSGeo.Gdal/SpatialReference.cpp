@@ -26,6 +26,16 @@ SpatialReference::~SpatialReference()
 	}
 }
 
+SpatialReference^ SpatialReference::FromOGRSpatialReference(OGRSpatialReference* srs)
+{
+	if (srs != NULL)
+	{
+		return gcnew SpatialReference(srs);
+	}
+
+	return nullptr;
+}
+
 SpatialReference^ SpatialReference::FromText(System::String^ text, SpatialReferenceImportFormat format)
 {
 	OGRSpatialReference* srs = new OGRSpatialReference(0);

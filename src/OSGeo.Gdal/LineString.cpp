@@ -30,6 +30,7 @@ int LineString::Count::get()
 {
 	return this->_lineString->getNumPoints();
 }
+
 void LineString::Count::set(int value)
 {
 	this->_lineString->setNumPoints(value);
@@ -67,6 +68,15 @@ bool LineString::Contains(PointGeometry^ point)
 
 void LineString::CopyTo(array<PointGeometry^>^ destination, int index)
 {
+	int count = this->_lineString->getNumPoints();
+	OGRRawPoint* points = new OGRRawPoint[count];
+	double* z = new double[count];
+	this->_lineString->getPoints(points, z);
+
+	for (int i = 0; i < count; i++)
+	{
+		destination[index + i] = gcnew PointGeometry(points[i].x, points[i].y, z[i]);
+	}
 }
 
 bool LineString::Remove(PointGeometry^ point)
@@ -80,7 +90,7 @@ void LineString::RemoveAt(int index)
 
 OSGeo::Ogr::PointGeometry^ LineString::Points::get(int index) 
 {
-	OGRPoint* point = new OGRPoint();
+	OGRPoint* point = NULL;
 	this->_lineString->getPoint(index, point);
 	return gcnew PointGeometry(point);
 }
