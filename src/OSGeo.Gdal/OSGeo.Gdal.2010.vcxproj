@@ -146,6 +146,8 @@
     <ClInclude Include="Driver.h" />
     <ClInclude Include="Datasource.h" />
     <ClInclude Include="DriverCapabilities.h" />
+    <ClInclude Include="Envelope.h" />
+    <ClInclude Include="Envelope3D.h" />
     <ClInclude Include="Feature.h" />
     <ClInclude Include="FeatureCollection.h" />
     <ClInclude Include="FeatureDefinition.h" />
@@ -178,6 +180,8 @@
     <ClCompile Include="Curve.cpp" />
     <ClCompile Include="DataSource.cpp" />
     <ClCompile Include="Driver.cpp" />
+    <ClCompile Include="Envelope.cpp" />
+    <ClCompile Include="Envelope3D.cpp" />
     <ClCompile Include="Feature.cpp" />
     <ClCompile Include="FeatureCollection.cpp" />
     <ClCompile Include="FeatureDefinition.cpp" />
