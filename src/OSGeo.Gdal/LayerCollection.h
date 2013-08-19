@@ -11,7 +11,8 @@ namespace OSGeo
 	{
 		ref class Layer;
 
-		/// <summary></summary>
+		/// <summary>Represents a collection of <see cref="Layer"/> objects in a <see cref="DataSource"/>.</summary>
+		[System::Diagnostics::DebuggerDisplay("Count = {Count}")]
 		public ref class LayerCollection sealed : public Generic::IEnumerable<Layer^>
 		{
 		private:

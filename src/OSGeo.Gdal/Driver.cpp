@@ -86,3 +86,8 @@ DriverCapabilities Driver::Capabilities::get()
 {
 	return this->_capabilities;
 }
+
+System::String^ Driver::ToString()
+{
+	return this->Name;
+}

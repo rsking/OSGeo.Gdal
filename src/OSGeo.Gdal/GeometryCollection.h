@@ -10,6 +10,7 @@ namespace OSGeo
 	namespace Ogr
 	{
 		/// <summary>Represents a collection of <see cref="Geometry"/> objects.</summary>
+		[System::Diagnostics::DebuggerDisplay("Count = {Count}")]
 		public ref class GeometryCollection : public Geometry, Generic::IEnumerable<Geometry^>
 		{
 		private:

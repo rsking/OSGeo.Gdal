@@ -9,6 +9,7 @@ namespace OSGeo
 	namespace Ogr
 	{
 		/// <summary>Represents a line string.</summary>
+		[System::Diagnostics::DebuggerDisplay("Count = {Count}")]
 		public ref class LineString : public Curve, Generic::IList<PointGeometry^>
 		{
 		private:

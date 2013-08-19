@@ -71,6 +71,9 @@ namespace OSGeo
 
 			/// <summary>Copies this dataset to the specified name.</summary>
 			DataSource^ Copy(String^ name);
+
+			/// <summary>Converts this instance into a human-readable string value.</summary>
+			virtual System::String^ ToString() override;
 		};
 	}
 }

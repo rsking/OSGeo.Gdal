@@ -12,12 +12,6 @@ namespace OSGeo
 		/// <summary>Represents the field definition.</summary>
 		public ref class FieldDefinition sealed
 		{
-		private:
-			/// <summary>Finalises this instance.</summary>
-			//!FieldDefinition();
-
-			/// <summary>Destructs this instance.</summary>
-			//~FieldDefinition();
 		internal:
 			/// <summary>The field definition object.</summary>
 			OGRFieldDefn* _fieldDefinition;
@@ -43,6 +37,9 @@ namespace OSGeo
 				FieldType get();
 				void set(FieldType value);
 			}
+
+			/// <summary>Converts this instance into a human-readable string value.</summary>
+			virtual System::String^ ToString() override;
 		};
 	}
 }

@@ -141,3 +141,8 @@ LayerCapabilities Layer::Capabilities::get()
 {
 	return this->_capabilities;
 }
+
+System::String^ Layer::ToString()
+{
+	return this->Name;
+}

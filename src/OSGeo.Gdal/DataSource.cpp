@@ -82,6 +82,11 @@ LayerCollection^ DataSource::Layers::get()
 	return gcnew LayerCollection(this->_dataSource);
 }
 
+System::String^ DataSource::ToString()
+{
+	return this->Name;
+}
+
 // Finalise this instance.
 DataSource::!DataSource()
 {

@@ -12,6 +12,7 @@ namespace OSGeo
 		ref class FeatureDefinition;
 
 		/// <summary>Represents a collection of <see cref="FieldDefinition"/> objects.</summary>
+		[System::Diagnostics::DebuggerDisplay("Count = {Count}")]
 		public ref class FieldDefinitionCollection sealed : public Generic::IList<FieldDefinition^>
 		{
 		private:

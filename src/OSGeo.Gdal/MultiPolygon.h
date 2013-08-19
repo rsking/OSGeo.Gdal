@@ -8,6 +8,7 @@ namespace OSGeo
 	namespace Ogr
 	{
 		/// <summary>Represents a collection of <see cref="Polygon"/> objects.</summary>
+		[System::Diagnostics::DebuggerDisplay("Count = {Count}")]
 		public ref class MultiPolygon : public GeometryCollection, Generic::IEnumerable<Polygon^>
 		{
 		private:

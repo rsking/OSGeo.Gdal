@@ -37,3 +37,8 @@ void FieldDefinition::Type::set(FieldType value)
 {
 	this->_fieldDefinition->SetType((OGRFieldType)value);
 }
+
+System::String^ FieldDefinition::ToString()
+{
+	return System::String::Format(System::Globalization::CultureInfo::CurrentCulture, "{0} - {1}", this->Name, FieldDefinition::GetName(this->Type));
+}
