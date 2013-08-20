@@ -5,6 +5,7 @@
 #include "FeatureCollection.h"
 #include "GdalException.h"
 #include "Envelope.h"
+#include "Geometry.h"
 
 using namespace System;
 using namespace OSGeo::Ogr;
@@ -158,5 +159,15 @@ Envelope^ Layer::Extents::get()
 		throw OSGeo::GdalException::Create(error);
 	}
 
-	return gcnew OSGeo::Ogr::Envelope(envelope);
+	return gcnew Envelope(envelope);
+}
+
+Geometry^ Layer::SpatialFilter::get()
+{
+	return this->_spatialFilter == nullptr ? this->_spatialFilter = Geometry::FromGeometry(this->_layer->GetSpatialFilter()) : this->_spatialFilter;
+}
+
+void Layer::SpatialFilter::set(Geometry^ filter)
+{
+	this->_layer->SetSpatialFilter(filter->Handle);
 }

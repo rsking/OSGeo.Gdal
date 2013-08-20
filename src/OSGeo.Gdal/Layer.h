@@ -12,6 +12,7 @@ namespace OSGeo
 		ref class FeatureCollection;
 		ref class FeatureDefinition;
 		ref class Envelope;
+		ref class Geometry;
 		
 		/// <summary>Represents an OGR Layer.</summary>
 		public ref class Layer sealed
@@ -25,6 +26,9 @@ namespace OSGeo
 			
 			/// <summary>The layer capabilities.</summary>
 			LayerCapabilities _capabilities;
+			
+			/// <summary>The spatial filter.</summary>
+			Geometry^ _spatialFilter;
 			
 			/// <summary>The OGR layer.</summary>
 			OGRLayer* _layer;
@@ -56,16 +60,23 @@ namespace OSGeo
 				FeatureCollection^ get();
 			}
 			
-			/// <summary>Get the capabilities.</summary>
+			/// <summary>Gets the capabilities.</summary>
 			property LayerCapabilities Capabilities
 			{
 				LayerCapabilities get();
 			}
 			
-			/// <summary>Get the extents.</summary>
+			/// <summary>Gets the extents.</summary>
 			property Envelope^ Extents
 			{
 				Envelope^ get();
+			}
+			
+			/// <summary>Gets or sets the spatial filter.</summary>
+			property Geometry^ SpatialFilter
+			{
+				Geometry^ get();
+				void set(Geometry^ filter);
 			}
 
 			/// <summary>Resets this instance.</summary>
