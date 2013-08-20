@@ -109,11 +109,6 @@ Layer::!Layer()
 {
 }
 
-void Layer::Reset()
-{
-	this->_layer->ResetReading();
-}
-
 String^ Layer::Name::get()
 {
 	msclr::interop::marshal_context cxt;
