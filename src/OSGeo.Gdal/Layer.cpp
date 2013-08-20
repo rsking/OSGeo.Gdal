@@ -3,6 +3,8 @@
 #include "Layer.h"
 #include "FeatureDefinition.h"
 #include "FeatureCollection.h"
+#include "GdalException.h"
+#include "Envelope.h"
 
 using namespace System;
 using namespace OSGeo::Ogr;
@@ -145,4 +147,16 @@ LayerCapabilities Layer::Capabilities::get()
 System::String^ Layer::ToString()
 {
 	return this->Name;
+}
+
+Envelope^ Layer::Extents::get()
+{
+	OGREnvelope* envelope = new OGREnvelope();
+	OGRErr error = this->_layer->GetExtent(envelope);
+	if (error != OGRERR_NONE)
+	{
+		throw OSGeo::GdalException::Create(error);
+	}
+
+	return gcnew OSGeo::Ogr::Envelope(envelope);
 }

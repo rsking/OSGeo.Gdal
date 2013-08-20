@@ -11,6 +11,7 @@ namespace OSGeo
 	{
 		ref class FeatureCollection;
 		ref class FeatureDefinition;
+		ref class Envelope;
 		
 		/// <summary>Represents an OGR Layer.</summary>
 		public ref class Layer sealed
@@ -61,6 +62,12 @@ namespace OSGeo
 				LayerCapabilities get();
 			}
 			
+			/// <summary>Get the extents.</summary>
+			property Envelope^ Extents
+			{
+				Envelope^ get();
+			}
+
 			/// <summary>Resets this instance.</summary>
 			void Reset();
 			
