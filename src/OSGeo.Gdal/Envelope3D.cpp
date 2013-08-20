@@ -40,3 +40,28 @@ bool Envelope3D::IsEmpty::get()
 {
 	return this->_envelope->IsInit() == FALSE;
 }
+
+void Envelope3D::Merge(Envelope3D^ other)
+{
+	this->_envelope->Merge(*other->_envelope);
+}
+			
+void Envelope3D::Merge(double x, double y, double z)
+{
+	this->_envelope->Merge(x, y, z);
+}
+
+void Envelope3D::Intersect(Envelope3D^ other)
+{
+	this->_envelope->Intersect(*other->_envelope);
+}
+
+bool Envelope3D::Intersects(Envelope3D^ other)
+{
+	return this->_envelope->Intersects(*other->_envelope);
+}
+			
+bool Envelope3D::Contains(Envelope3D^ other)
+{
+	return this->_envelope->Contains(*other->_envelope);
+}

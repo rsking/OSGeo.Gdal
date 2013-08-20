@@ -25,8 +25,24 @@ namespace OSGeo
 			
 			/// <summary>Gets or sets the maximum y-value.</summary>
 			property double MaxZ { double get(); void set(double value); }
-
+			
+			/// <summary>Gets a value indicating whether this instance is empty.</summary>
 			property bool IsEmpty { bool get(); }
+
+			/// <summary>Merges this instance with the specified instance.</summary>
+			void Merge(Envelope3D^ other);
+			
+			/// <summary>Merges this instance with the specified values.</summary>
+			void Merge(double x, double y, double z);
+
+			/// <summary>Intersects this instance with the specified instance.</summary>
+			void Intersect(Envelope3D^ other);
+
+			/// <summary>Gets a value indicating whether this instance intersects with the specified instance.</summary>
+			bool Intersects(Envelope3D^ other);
+			
+			/// <summary>Gets a value indicating whether this instance contains the specified instance.</summary>
+			bool Contains(Envelope3D^ other);
 		};
 	}
 }
