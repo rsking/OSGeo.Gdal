@@ -14,7 +14,7 @@ double MultiPolygon::Area::get()
 	return this->_multiPolygon->get_Area();
 }
 
-Generic::IEnumerator<Polygon^>^ MultiPolygon::GetEnumeratorPolygon()
+Generic::IEnumerator<Polygon^>^ MultiPolygon::GetEnumerator()
 {
 	return gcnew PolygonEnumerator(this->_multiPolygon);
 }
@@ -22,6 +22,7 @@ Generic::IEnumerator<Polygon^>^ MultiPolygon::GetEnumeratorPolygon()
 PolygonEnumerator::PolygonEnumerator(OGRMultiPolygon* multiPolygon)
 {
 	this->_multiPolygon = multiPolygon;
+	this->Reset();
 }
 
 Polygon^ PolygonEnumerator::Current::get()

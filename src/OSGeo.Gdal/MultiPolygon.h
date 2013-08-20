@@ -20,7 +20,7 @@ namespace OSGeo
 			MultiPolygon(OGRMultiPolygon* multiPolygon);
 		public:
 			/// <summary>Returns an enumerator that iterates through a <see cref="GeometryCollection"/> containing <see cref="Polygon"/> objects.</summary>
-			virtual Generic::IEnumerator<Polygon^>^ GetEnumeratorPolygon() sealed = Generic::IEnumerable<Polygon^>::GetEnumerator;
+			virtual Generic::IEnumerator<Polygon^>^ GetEnumerator() new = Generic::IEnumerable<Polygon^>::GetEnumerator;
 
 			/// <summary>Gets the area of this instance.</summary>
 			property double Area

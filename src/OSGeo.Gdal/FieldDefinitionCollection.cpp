@@ -122,7 +122,7 @@ IEnumerator^ FieldDefinitionCollection::GetEnumeratorBase()
 FieldDefinitionEnumerator::FieldDefinitionEnumerator(OGRFeatureDefn* featureDefinition)
 {
 	this->_featureDefinition = featureDefinition;
-	this->_currentIndex = -1;
+	this->Reset();
 }
 
 FieldDefinition^ FieldDefinitionEnumerator::Current::get()
@@ -151,6 +151,7 @@ bool FieldDefinitionEnumerator::MoveNext()
 
 void FieldDefinitionEnumerator::Reset()
 {
+	this->ReleaseCurrentFieldDefinition();
 	this->_currentIndex = -1;
 }
 

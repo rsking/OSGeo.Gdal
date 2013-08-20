@@ -28,6 +28,7 @@ IEnumerator^ GeometryCollection::GetEnumeratorBase()
 GeometryEnumerator::GeometryEnumerator(OGRGeometryCollection* geometryCollection)
 {
 	this->_geometryCollection = geometryCollection;
+	this->Reset();
 }
 
 Geometry^ GeometryEnumerator::Current::get()
