@@ -42,7 +42,7 @@ DataSource^ DataSource::Open(String^ filename)
 	poDS = OGRSFDriverRegistrar::Open(input, FALSE);
 	if (poDS == NULL)
 	{
-		throw GdalException::Create();
+		throw GdalException::Create(OGRERR_FAILURE);
 	}
 
 	return gcnew OSGeo::Ogr::DataSource(poDS);

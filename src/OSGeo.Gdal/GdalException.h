@@ -7,10 +7,10 @@ namespace OSGeo
 	{
 	private:
 		/// <summary>Initialises a new instance of the <see cref="GdalException"/> class.</summary>
-		GdalException(System::String^ message);
+		GdalException(int error, System::String^ message);
 	internal:
 		/// <summary>Creates a new instance of the <see cref="GdalException"/> class.</summary>
-		static GdalException^ Create();
+		static GdalException^ Create(int error);
 	};
 }
 

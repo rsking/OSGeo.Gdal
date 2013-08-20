@@ -5,12 +5,12 @@
 
 using namespace OSGeo;
 
-GdalException::GdalException(System::String^ message) : Exception(message)
+GdalException::GdalException(int error, System::String^ message) : Exception(message)
 {
-	//CPLGetLastErrorMsg
+	this->HResult = error;
 }
 
-GdalException^ GdalException::Create()
+GdalException^ GdalException::Create(int error)
 {
 	const char* errorMessage = CPLGetLastErrorMsg();
 	if (errorMessage == NULL)
@@ -19,5 +19,5 @@ GdalException^ GdalException::Create()
 	}
 
 	System::String^ errorString = StringMarshaller::GetStringAsUtf8(errorMessage);
-	return gcnew GdalException(errorString);
+	return gcnew GdalException(error, errorString);
 }
