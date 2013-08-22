@@ -9,11 +9,6 @@ MultiPoint::MultiPoint(OGRMultiPoint* multiPoint) : GeometryCollection(multiPoin
 	this->_multiPoint = multiPoint;
 }
 
-double MultiPoint::Area::get()
-{
-	return this->_multiPoint->get_Area();
-}
-
 Generic::IEnumerator<Point^>^ MultiPoint::GetEnumerator()
 {
 	return gcnew Enumerator(this->_multiPoint);

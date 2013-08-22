@@ -163,6 +163,7 @@
     <ClInclude Include="LayerCollection.h" />
     <ClInclude Include="LinearRing.h" />
     <ClInclude Include="LineString.h" />
+    <ClInclude Include="MultiLineString.h" />
     <ClInclude Include="MultiPoint.h" />
     <ClInclude Include="MultiPolygon.h" />
     <ClInclude Include="Point.h" />
@@ -194,6 +195,7 @@
     <ClCompile Include="LayerCollection.cpp" />
     <ClCompile Include="LinearRing.cpp" />
     <ClCompile Include="LineString.cpp" />
+    <ClCompile Include="MultiLineString.cpp" />
     <ClCompile Include="MultiPoint.cpp" />
     <ClCompile Include="MultiPolygon.cpp" />
     <ClCompile Include="Point.cpp" />

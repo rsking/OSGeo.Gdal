@@ -62,12 +62,6 @@ namespace OSGeo
 		public:
 			/// <summary>Returns an enumerator that iterates through a <see cref="GeometryCollection"/> containing <see cref="Point"/> objects.</summary>
 			virtual Generic::IEnumerator<Point^>^ GetEnumerator() new = Generic::IEnumerable<Point^>::GetEnumerator;
-
-			/// <summary>Gets the area of this instance.</summary>
-			property double Area
-			{
-				double get();
-			}
 		};
 	}
 }

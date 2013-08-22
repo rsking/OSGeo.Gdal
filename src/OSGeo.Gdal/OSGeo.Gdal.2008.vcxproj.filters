@@ -120,6 +120,9 @@
     <ClInclude Include="MultiPoint.h">
       <Filter>Header Files\Ogr</Filter>
     </ClInclude>
+    <ClInclude Include="MultiLineString.h">
+      <Filter>Header Files\Ogr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp">
@@ -198,6 +201,9 @@
       <Filter>Source Files\Ogr</Filter>
     </ClCompile>
     <ClCompile Include="MultiPoint.cpp">
+      <Filter>Source Files\Ogr</Filter>
+    </ClCompile>
+    <ClCompile Include="MultiLineString.cpp">
       <Filter>Source Files\Ogr</Filter>
     </ClCompile>
   </ItemGroup>

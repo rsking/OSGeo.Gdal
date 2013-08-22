@@ -6,6 +6,8 @@
 #include "Polygon.h"
 #include "LineString.h"
 #include "MultiPolygon.h"
+#include "MultiPoint.h"
+#include "MultiLineString.h"
 #include "SpatialReference.h"
 
 using namespace System;
@@ -33,8 +35,9 @@ Geometry^ Geometry::FromGeometry(OGRGeometry* geometry)
 		case wkbPolygon:
 			return gcnew OSGeo::Ogr::Polygon((OGRPolygon*)geometry);
 		case wkbMultiPoint:
+			return gcnew OSGeo::Ogr::MultiPoint((OGRMultiPoint*)geometry);
 		case wkbMultiLineString:
-			break;
+			return gcnew OSGeo::Ogr::MultiLineString((OGRMultiLineString*)geometry);
 		case wkbMultiPolygon:
 			return gcnew OSGeo::Ogr::MultiPolygon((OGRMultiPolygon*)geometry);
 		case wkbGeometryCollection:
