@@ -1,7 +1,6 @@
 #include "StdAfx.h"
 #include "LineString.h"
-#include "PointGeometry.h"
-#include "PointGeometryEnumerator.h"
+#include "Point.h"
 
 using namespace OSGeo::Ogr;
 
@@ -14,14 +13,14 @@ LineString::LineString(OGRLineString* lineString) : Curve(lineString)
 	this->_lineString = lineString;
 }
 
-System::Collections::Generic::IEnumerator<OSGeo::Ogr::PointGeometry^>^ LineString::GetEnumerator()
+System::Collections::Generic::IEnumerator<OSGeo::Ogr::Point^>^ LineString::GetEnumerator()
 {
-	return gcnew PointGeometryEnumerator(this->_lineString);
+	return gcnew PointEnumerator(this->_lineString);
 }
 
 IEnumerator^ LineString::GetEnumeratorBase()
 {
-	return gcnew PointGeometryEnumerator(this->_lineString);
+	return gcnew PointEnumerator(this->_lineString);
 }
 
 int LineString::Count::get()
@@ -39,7 +38,7 @@ bool LineString::IsReadOnly::get()
 	return false;
 }
 
-void LineString::Add(PointGeometry^ point)
+void LineString::Add(Point^ point)
 {
 	return this->_lineString->addPoint(point->X, point->Y, point->Z);
 }
@@ -59,12 +58,12 @@ void LineString::Clear()
 	this->_lineString->empty();
 }
 
-bool LineString::Contains(PointGeometry^ point)
+bool LineString::Contains(Point^ point)
 {
 	return false;
 }
 
-void LineString::CopyTo(array<PointGeometry^>^ destination, int index)
+void LineString::CopyTo(array<Point^>^ destination, int index)
 {
 	int count = this->_lineString->getNumPoints();
 	OGRRawPoint* points = new OGRRawPoint[count];
@@ -73,11 +72,11 @@ void LineString::CopyTo(array<PointGeometry^>^ destination, int index)
 
 	for (int i = 0; i < count; i++)
 	{
-		destination[index + i] = gcnew PointGeometry(points[i].x, points[i].y, z[i]);
+		destination[index + i] = gcnew Point(points[i].x, points[i].y, z[i]);
 	}
 }
 
-bool LineString::Remove(PointGeometry^ point)
+bool LineString::Remove(Point^ point)
 {
 	return false;
 }
@@ -86,23 +85,64 @@ void LineString::RemoveAt(int index)
 {
 }
 
-OSGeo::Ogr::PointGeometry^ LineString::Points::get(int index) 
+OSGeo::Ogr::Point^ LineString::Points::get(int index) 
 {
 	OGRPoint* point = NULL;
 	this->_lineString->getPoint(index, point);
-	return gcnew PointGeometry(point);
+	return gcnew Point(point);
 }
 
-void LineString::Points::set(int index, OSGeo::Ogr::PointGeometry^ value) 
+void LineString::Points::set(int index, OSGeo::Ogr::Point^ value) 
 {
 	this->_lineString->setPoint(index, (OGRPoint*)value->Handle);
 }
 
-int LineString::IndexOf(PointGeometry^ point)
+int LineString::IndexOf(Point^ point)
 {
 	return -1;
 }
 
-void LineString::Insert(int index, PointGeometry^ point)
+void LineString::Insert(int index, Point^ point)
 {
+}
+
+LineString::PointEnumerator::PointEnumerator(OGRLineString* lineString)
+{
+	this->_lineString = lineString;
+	this->_currentIndex = -1;
+}
+
+Point^ LineString::PointEnumerator::Current::get()
+{
+	return this->_currentPoint;
+}
+
+System::Object^ LineString::PointEnumerator::CurrentBase::get()
+{
+	return this->Current;
+}
+
+bool LineString::PointEnumerator::MoveNext()
+{
+	this->_currentIndex++;
+	if (this->_currentIndex < this->_lineString->getNumPoints())
+	{
+		OGRPoint* point = new OGRPoint();
+		this->_lineString->getPoint(this->_currentIndex, point);
+		this->_currentPoint = gcnew Point(point);
+		return true;
+	}
+
+	return false;
+}
+
+void LineString::PointEnumerator::Reset()
+{
+	this->_currentIndex = -1;
+}
+
+LineString::PointEnumerator::~PointEnumerator()
+{
+	// make sure we clear the last current layer
+	this->_currentPoint = nullptr;
 }

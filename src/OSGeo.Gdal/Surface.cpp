@@ -4,10 +4,6 @@
 
 using namespace OSGeo::Ogr;
 
-Surface::Surface() : Geometry()
-{
-}
-
 Surface::Surface(OGRSurface* surface) : Geometry(surface)
 {
 	this->_surface = surface;

@@ -2,7 +2,7 @@
 #include <msclr/marshal.h>
 #include "Geometry.h"
 #include "GeometryCollection.h"
-#include "PointGeometry.h"
+#include "Point.h"
 #include "Polygon.h"
 #include "LineString.h"
 #include "MultiPolygon.h"
@@ -10,10 +10,6 @@
 
 using namespace System;
 using namespace OSGeo::Ogr;
-
-Geometry::Geometry()
-{
-}
 
 Geometry::Geometry(OGRGeometry* geometry)
 {
@@ -30,24 +26,21 @@ Geometry^ Geometry::FromGeometry(OGRGeometry* geometry)
 		{
 		case wkbPoint:
 		case wkbPoint25D:
-			return gcnew OSGeo::Ogr::PointGeometry((OGRPoint*)geometry);
+			return gcnew OSGeo::Ogr::Point((OGRPoint*)geometry);
 		case wkbLineString:
 		case wkbLineString25D:
 			return gcnew OSGeo::Ogr::LineString((OGRLineString*)geometry);
-			break;
 		case wkbPolygon:
 			return gcnew OSGeo::Ogr::Polygon((OGRPolygon*)geometry);
-			break;
 		case wkbMultiPoint:
 		case wkbMultiLineString:
 			break;
 		case wkbMultiPolygon:
 			return gcnew OSGeo::Ogr::MultiPolygon((OGRMultiPolygon*)geometry);
-			break;
 		case wkbGeometryCollection:
 			return gcnew OSGeo::Ogr::GeometryCollection((OGRGeometryCollection*)geometry);
-			break;
 		}
+
 	}
 
 	return nullptr;

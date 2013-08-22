@@ -6,7 +6,7 @@ namespace OSGeo
 {
 	namespace Ogr
 	{
-		ref class PointGeometry;
+		ref class Point;
 
 		/// <summary>The curve geometry class.</summary>
 		public ref class Curve abstract : public Geometry
@@ -15,9 +15,6 @@ namespace OSGeo
 			/// <summary>The OGR curve</summary>
 			OGRCurve* _curve;
 		protected:
-			/// <summary>Initialises a new instance of the <see cref="Curve"/> class.<summary>
-			Curve();
-
 			/// <summary><summary>
 			Curve(OGRCurve* surface);
 		public:
@@ -28,15 +25,15 @@ namespace OSGeo
 			}
 
 			/// <summary>Gets the curve start point.</summary>
-			property PointGeometry^ Start
+			property Point^ Start
 			{
-				PointGeometry^ get();
+				Point^ get();
 			}
 
 			/// <summary>Gets the curve end point.</summary>
-			property PointGeometry^ End
+			property Point^ End
 			{
-				PointGeometry^ get();
+				Point^ get();
 			}
 
 			/// <summary>Gets a value indicating whether this instance is closed.</summary>
@@ -46,7 +43,7 @@ namespace OSGeo
 			}
 
 			/// <summary>Gets a point at given distance along curve.</summary>
-			PointGeometry^ GetPoint(double distance);
+			Point^ GetPoint(double distance);
 		};
 	}
 }

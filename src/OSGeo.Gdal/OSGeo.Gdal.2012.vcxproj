@@ -157,14 +157,15 @@
     <ClInclude Include="GdalException.h" />
     <ClInclude Include="Geometry.h" />
     <ClInclude Include="GeometryCollection.h" />
+    <ClInclude Include="GeometryTextFormat.h" />
     <ClInclude Include="Layer.h" />
     <ClInclude Include="LayerCapabilities.h" />
     <ClInclude Include="LayerCollection.h" />
     <ClInclude Include="LinearRing.h" />
     <ClInclude Include="LineString.h" />
+    <ClInclude Include="MultiPoint.h" />
     <ClInclude Include="MultiPolygon.h" />
-    <ClInclude Include="PointGeometry.h" />
-    <ClInclude Include="PointGeometryEnumerator.h" />
+    <ClInclude Include="Point.h" />
     <ClInclude Include="Polygon.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="SpatialReference.h" />
@@ -173,7 +174,6 @@
     <ClInclude Include="Stdafx.h" />
     <ClInclude Include="StringMarshaller.h" />
     <ClInclude Include="Surface.h" />
-    <ClInclude Include="GeometryTextFormat.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
@@ -194,9 +194,9 @@
     <ClCompile Include="LayerCollection.cpp" />
     <ClCompile Include="LinearRing.cpp" />
     <ClCompile Include="LineString.cpp" />
+    <ClCompile Include="MultiPoint.cpp" />
     <ClCompile Include="MultiPolygon.cpp" />
-    <ClCompile Include="PointGeometry.cpp" />
-    <ClCompile Include="PointGeometryEnumerator.cpp" />
+    <ClCompile Include="Point.cpp" />
     <ClCompile Include="Polygon.cpp" />
     <ClCompile Include="SpatialReference.cpp" />
     <ClCompile Include="Stdafx.cpp">

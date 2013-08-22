@@ -60,7 +60,7 @@
     <ClInclude Include="FeatureCollection.h">
       <Filter>Header Files\Ogr</Filter>
     </ClInclude>
-    <ClInclude Include="PointGeometry.h">
+    <ClInclude Include="Point.h">
       <Filter>Header Files\Ogr</Filter>
     </ClInclude>
     <ClInclude Include="Polygon.h">
@@ -85,9 +85,6 @@
       <Filter>Header Files\Ogr</Filter>
     </ClInclude>
     <ClInclude Include="LineString.h">
-      <Filter>Header Files\Ogr</Filter>
-    </ClInclude>
-    <ClInclude Include="PointGeometryEnumerator.h">
       <Filter>Header Files\Ogr</Filter>
     </ClInclude>
     <ClInclude Include="LinearRing.h">
@@ -118,6 +115,9 @@
       <Filter>Header Files\Ogr</Filter>
     </ClInclude>
     <ClInclude Include="Envelope3D.h">
+      <Filter>Header Files\Ogr</Filter>
+    </ClInclude>
+    <ClInclude Include="MultiPoint.h">
       <Filter>Header Files\Ogr</Filter>
     </ClInclude>
   </ItemGroup>
@@ -158,7 +158,7 @@
     <ClCompile Include="Geometry.cpp">
       <Filter>Source Files\Ogr</Filter>
     </ClCompile>
-    <ClCompile Include="PointGeometry.cpp">
+    <ClCompile Include="Point.cpp">
       <Filter>Source Files\Ogr</Filter>
     </ClCompile>
     <ClCompile Include="Polygon.cpp">
@@ -174,9 +174,6 @@
       <Filter>Source Files\Ogr</Filter>
     </ClCompile>
     <ClCompile Include="Curve.cpp">
-      <Filter>Source Files\Ogr</Filter>
-    </ClCompile>
-    <ClCompile Include="PointGeometryEnumerator.cpp">
       <Filter>Source Files\Ogr</Filter>
     </ClCompile>
     <ClCompile Include="LinearRing.cpp">
@@ -200,6 +197,9 @@
     <ClCompile Include="Envelope3D.cpp">
       <Filter>Source Files\Ogr</Filter>
     </ClCompile>
+    <ClCompile Include="MultiPoint.cpp">
+      <Filter>Source Files\Ogr</Filter>
+    </ClCompile
   </ItemGroup>
   <ItemGroup>
     <None Include="app.ico">

@@ -19,10 +19,7 @@ namespace OSGeo
 			
 			/// <summary>The spatial reference system.</summary>
 			SpatialReference^ _srs;
-		protected:
-			/// <summary>Initialises a new instance of the <see	cref="Geometry"/> class.</summary>
-			Geometry();
-			
+		protected:			
 			/// <summary>Initialises a new instance of the <see	cref="Geometry"/> class.</summary>
 			/// <param name="_geometry">The OGR geometry.</param>
 			Geometry(OGRGeometry* _geometry);

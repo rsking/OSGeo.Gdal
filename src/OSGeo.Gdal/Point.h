@@ -7,23 +7,23 @@ namespace OSGeo
 	namespace Ogr
 	{
 		/// <summary>The point geometry class.</summary>
-		public ref class PointGeometry sealed : public Geometry
+		public ref class Point sealed : public Geometry
 		{
 		private:
 			/// <summary>The point.</summary>
 			OGRPoint* _point;
 		internal:
 			/// <summary>Initialises a new instance of the <see cref="PointGeometry"/> class.</summary>
-			PointGeometry(OGRPoint* point);
+			Point(OGRPoint* point);
 		public:
 			/// <summary>Initialises a new instance of the <see cref="PointGeometry"/> class.</summary>
-			PointGeometry(void);
+			Point(void);
 
 			/// <summary>Initialises a new instance of the <see cref="PointGeometry"/> class.</summary>
-			PointGeometry(double x, double y);
+			Point(double x, double y);
 
 			/// <summary>Initialises a new instance of the <see cref="PointGeometry"/> class.</summary>
-			PointGeometry(double x, double y, double z);
+			Point(double x, double y, double z);
 
 			/// <summary>Gets or sets the x-coordinate.</summary>
 			property double X 

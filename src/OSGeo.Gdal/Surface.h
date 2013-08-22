@@ -12,10 +12,7 @@ namespace OSGeo
 		private:
 			/// <summary>The OGR surface.</summary>
 			OGRSurface* _surface;
-		protected:
-			/// <summary>Initialises a new instance of the <see cref="Surface"/> class.</summary>
-			Surface();
-			
+		protected:			
 			/// <summary>Initialises a new instance of the <see cref="Surface"/> class.</summary>
 			/// <param name="surface">The OGR surface.</param>
 			Surface(OGRSurface* surface);
