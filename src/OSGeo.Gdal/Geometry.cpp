@@ -33,17 +33,21 @@ Geometry^ Geometry::FromGeometry(OGRGeometry* geometry)
 		case wkbLineString25D:
 			return gcnew OSGeo::Ogr::LineString((OGRLineString*)geometry);
 		case wkbPolygon:
+		case wkbPolygon25D:
 			return gcnew OSGeo::Ogr::Polygon((OGRPolygon*)geometry);
 		case wkbMultiPoint:
+		case wkbMultiPoint25D:
 			return gcnew OSGeo::Ogr::MultiPoint((OGRMultiPoint*)geometry);
 		case wkbMultiLineString:
+		case wkbMultiLineString25D:
 			return gcnew OSGeo::Ogr::MultiLineString((OGRMultiLineString*)geometry);
 		case wkbMultiPolygon:
+		case wkbMultiPolygon25D:
 			return gcnew OSGeo::Ogr::MultiPolygon((OGRMultiPolygon*)geometry);
 		case wkbGeometryCollection:
+		case wkbGeometryCollection25D:
 			return gcnew OSGeo::Ogr::GeometryCollection((OGRGeometryCollection*)geometry);
 		}
-
 	}
 
 	return nullptr;
@@ -96,7 +100,7 @@ void Geometry::Empty()
 
 bool Geometry::Equals(Geometry^ geometry)
 {
-	return this->_geometry->Equals(geometry->_geometry) != 0;
+	return this->_geometry->Equals(geometry->_geometry) != NULL;
 }
 
 void Geometry::CloseRings()
@@ -111,37 +115,37 @@ void Geometry::Segmentize(double maxLength)
 
 bool Geometry::Intersects(Geometry^ geometry)
 {
-	return this->_geometry->Intersects(geometry->_geometry) != 0;
+	return this->_geometry->Intersects(geometry->_geometry) != FALSE;
 }
 
 bool Geometry::Disjoint(Geometry^ geometry)
 {
-	return this->_geometry->Disjoint(geometry->_geometry) != 0;
+	return this->_geometry->Disjoint(geometry->_geometry) != FALSE;
 }
 
 bool Geometry::Touches(Geometry^ geometry)
 {
-	return this->_geometry->Touches(geometry->_geometry) != 0;
+	return this->_geometry->Touches(geometry->_geometry) != FALSE;
 }
 
 bool Geometry::Crosses(Geometry^ geometry)
 {
-	return this->_geometry->Crosses(geometry->_geometry) != 0;
+	return this->_geometry->Crosses(geometry->_geometry) != FALSE;
 }
 
 bool Geometry::Within(Geometry^ geometry)
 {
-	return this->_geometry->Within(geometry->_geometry) != 0;
+	return this->_geometry->Within(geometry->_geometry) != FALSE;
 }
 
 bool Geometry::Contains(Geometry^ geometry)
 {
-	return this->_geometry->Contains(geometry->_geometry) != 0;
+	return this->_geometry->Contains(geometry->_geometry) != FALSE;
 }
 
 bool Geometry::Overlaps(Geometry^ geometry)
 {
-	return this->_geometry->Overlaps(geometry->_geometry) != 0;
+	return this->_geometry->Overlaps(geometry->_geometry) != FALSE;
 }
 
 OGRGeometry* Geometry::Handle::get()
@@ -177,22 +181,22 @@ void Geometry::CoordinateDimensions::set(int value)
 
 bool Geometry::IsEmpty::get()
 {
-	return this->_geometry->IsEmpty() != 0;
+	return this->_geometry->IsEmpty() != FALSE;
 }
 
 bool Geometry::IsValid::get()
 {
-	return this->_geometry->IsValid() != 0;
+	return this->_geometry->IsValid() != FALSE;
 }
 
 bool Geometry::IsSimple::get()
 {
-	return this->_geometry->IsSimple() != 0;
+	return this->_geometry->IsSimple() != FALSE;
 }
 
 bool Geometry::IsRing::get()
 {
-	return this->_geometry->IsRing() != 0;
+	return this->_geometry->IsRing() != FALSE;
 }
 
 String^ Geometry::ToString()
