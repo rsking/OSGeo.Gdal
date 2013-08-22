@@ -33,14 +33,14 @@ namespace OSGeo
 			virtual IEnumerator^ GetEnumeratorBase() sealed = System::Collections::IEnumerable::GetEnumerator;
 
 			/// <summary>Gets the field definition at the specified index.</summary>
-			property FieldDefinition^ Item[int]
+			property FieldDefinition^ default[int]
 			{
 				virtual FieldDefinition^ get(int index) = Generic::IList<FieldDefinition^>::default::get;
 				virtual void set(int index, FieldDefinition^ value) = Generic::IList<FieldDefinition^>::default::set;
 			}
 
 			/// <summary>Gets the field definition with the specified name.</summary>
-			property FieldDefinition^ Item[String^]
+			property FieldDefinition^ default[String^]
 			{
 				FieldDefinition^ get(String^ name);
 			}

@@ -12,7 +12,7 @@ FieldDefinitionCollection::FieldDefinitionCollection(OGRFeatureDefn* featureDefi
 	OGRFieldDefn* temp = this->_featureDefinition->GetFieldDefn(0);
 }
 
-FieldDefinition^ FieldDefinitionCollection::Item::get(int index)
+FieldDefinition^ FieldDefinitionCollection::default::get(int index)
 {
 	if (index < 0 || index >= this->Count)
 	{
@@ -27,12 +27,12 @@ FieldDefinition^ FieldDefinitionCollection::Item::get(int index)
 	return this->_fieldDefinitions[index];
 }
 
-void FieldDefinitionCollection::Item::set(int index, FieldDefinition^ field)
-{
+void FieldDefinitionCollection::default::set(int index, FieldDefinition^ field)
+{	
 	throw gcnew NotSupportedException();
 }
 
-FieldDefinition^ FieldDefinitionCollection::Item::get(String^ name)
+FieldDefinition^ FieldDefinitionCollection::default::get(String^ name)
 {
 	// get the index
 	const char* fieldName = OSGeo::StringMarshaller::FromUnicodeString(name);
@@ -43,7 +43,7 @@ FieldDefinition^ FieldDefinitionCollection::Item::get(String^ name)
 		// field is not found
 	}
 
-	return this->Item[index];
+	return this[index];
 }
 
 int FieldDefinitionCollection::Count::get()
