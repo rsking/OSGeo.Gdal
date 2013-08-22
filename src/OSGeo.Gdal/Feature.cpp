@@ -43,23 +43,23 @@ Object^ Feature::Item::get(int i)
 	return this->GetValue(i);
 }
 
-void Feature::Item::set(int i, Object^ value)
+void Feature::Item::set(int index, Object^ value)
 {
 	Type^ type = value->GetType();
 	if (type == int::typeid)
 	{
-		this->_feature->SetField(i, safe_cast<int>(value));
+		this->_feature->SetField(index, safe_cast<int>(value));
 		return;
 	}
 	else if (type == double::typeid)
 	{
-		this->_feature->SetField(i, safe_cast<double>(value));
+		this->_feature->SetField(index, safe_cast<double>(value));
 		return;
 	}
 	else if (type == DateTime::typeid)
 	{
 		DateTime^ temp = safe_cast<DateTime^>(value);
-		this->_feature->SetField(i, temp->Year, temp->Month, temp->Day, temp->Hour, temp->Minute, temp->Second, temp->Kind == System::DateTimeKind::Local ? 1 : temp->Kind == System::DateTimeKind::Utc ? 2 : 0);
+		this->_feature->SetField(index, temp->Year, temp->Month, temp->Day, temp->Hour, temp->Minute, temp->Second, temp->Kind == System::DateTimeKind::Local ? 1 : temp->Kind == System::DateTimeKind::Utc ? 2 : 0);
 	}
 
 	ICollection<int>^ collectionInt = dynamic_cast<ICollection<int>^>(value);
@@ -69,7 +69,7 @@ void Feature::Item::set(int i, Object^ value)
 		array<int>^ tempArray = gcnew array<int>(arrayLength);
 		collectionInt->CopyTo(tempArray, 0);
 		pin_ptr<int> p1 = &tempArray[0];
-		this->_feature->SetField(i, arrayLength, p1);
+		this->_feature->SetField(index, arrayLength, p1);
 		p1 = nullptr;
 		return;
 	}
@@ -81,7 +81,7 @@ void Feature::Item::set(int i, Object^ value)
 		array<double>^ tempArray = gcnew array<double>(arrayLength);
 		collectionDouble->CopyTo(tempArray, 0);
 		pin_ptr<double> p1 = &tempArray[0];
-		this->_feature->SetField(i, arrayLength, p1);
+		this->_feature->SetField(index, arrayLength, p1);
 		p1 = nullptr;
 		return;
 	}
@@ -99,7 +99,7 @@ void Feature::Item::set(int i, Object^ value)
 			stringArray[i] = const_cast<char*>(charValue);
 		}
 
-		this->_feature->SetField(i, stringArray);
+		this->_feature->SetField(index, stringArray);
 		return;
 	}
 
@@ -107,7 +107,7 @@ void Feature::Item::set(int i, Object^ value)
 	if (byteArray != nullptr)
 	{
 		pin_ptr<GByte> p1 = &byteArray[0];
-		this->_feature->SetField(i, byteArray->Length, p1);
+		this->_feature->SetField(index, byteArray->Length, p1);
 		p1 = nullptr;
 		return;
 	}
@@ -118,7 +118,7 @@ void Feature::Item::set(int i, Object^ value)
 		stringValue = value->ToString();
 	}
 
-	this->_feature->SetField(i, StringMarshaller::FromUnicodeString(stringValue));
+	this->_feature->SetField(index, StringMarshaller::FromUnicodeString(stringValue));
 }
 
 Object^ Feature::Item::get(String^ name)

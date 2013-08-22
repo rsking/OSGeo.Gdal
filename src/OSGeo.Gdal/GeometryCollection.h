@@ -57,7 +57,7 @@ namespace OSGeo
 			};
 		internal:
 			/// <summary>Initialises a new instance of the <see cref="GeometryCollection"/> class.</summary>
-			/// <param name="featureDefinition">The OGR feature definition.</param>
+			/// <param name="geometryCollection">The OGR geometry collection.</param>
 			GeometryCollection(OGRGeometryCollection* geometryCollection);
 		public:
 			/// <summary>Returns an enumerator that iterates through a collection containing <see cref="Geometry"/> objects.</summary>

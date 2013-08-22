@@ -13,16 +13,16 @@ namespace OSGeo
 			/// <summary>The point.</summary>
 			OGRPoint* _point;
 		internal:
-			/// <summary>Initialises a new instance of the <see cref="PointGeometry"/> class.</summary>
+			/// <summary>Initialises a new instance of the <see cref="Point"/> class.</summary>
 			Point(OGRPoint* point);
 		public:
-			/// <summary>Initialises a new instance of the <see cref="PointGeometry"/> class.</summary>
+			/// <summary>Initialises a new instance of the <see cref="Point"/> class.</summary>
 			Point(void);
 
-			/// <summary>Initialises a new instance of the <see cref="PointGeometry"/> class.</summary>
+			/// <summary>Initialises a new instance of the <see cref="Point"/> class.</summary>
 			Point(double x, double y);
 
-			/// <summary>Initialises a new instance of the <see cref="PointGeometry"/> class.</summary>
+			/// <summary>Initialises a new instance of the <see cref="Point"/> class.</summary>
 			Point(double x, double y, double z);
 
 			/// <summary>Gets or sets the x-coordinate.</summary>

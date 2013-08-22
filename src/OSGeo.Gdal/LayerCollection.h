@@ -60,7 +60,7 @@ namespace OSGeo
 			};
 		internal:
 			/// <summary>Initialises a new instance of the <see cref="LayerCollection"/> class.</summary>
-			/// <param name="layer">The OGR data source.</param>
+			/// <param name="dataSource">The OGR data source.</param>
 			LayerCollection(OGRDataSource* dataSource);
 		public:
 			/// <summary>Gets the number of layers.</summary>

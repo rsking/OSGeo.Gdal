@@ -16,7 +16,7 @@ namespace OSGeo
 			OGRPolygon* _polygon;
 		internal:
 			/// <summary>Initialises a new instance of the <see cref="Polygon"/> class.</summary>
-			/// <param name="surface">The OGR polygon.</param>
+			/// <param name="polygon">The OGR polygon.</param>
 			Polygon(OGRPolygon* polygon);
 		public:
 			/// <summary>Initialises a new instance of the <see cref="Polygon"/> class.</summary>

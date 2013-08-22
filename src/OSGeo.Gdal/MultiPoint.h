@@ -56,8 +56,8 @@ namespace OSGeo
 				virtual void Reset();
 			};
 		internal:
-			/// <summary>Initialises a new instance of the <see cref="FieldDefinitionCollection"/> class.</summary>
-			/// <param name="featureDefinition">The OGR feature definition.</param>
+			/// <summary>Initialises a new instance of the <see cref="MultiPoint"/> class.</summary>
+			/// <param name="multiPoint">The OGR multi point.</param>
 			MultiPoint(OGRMultiPoint* multiPoint);
 		public:
 			/// <summary>Returns an enumerator that iterates through a <see cref="GeometryCollection"/> containing <see cref="Point"/> objects.</summary>

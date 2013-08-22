@@ -67,7 +67,8 @@ namespace OSGeo
 			/// <param name="format">The export format.</param>
 			System::String^ ToString(SpatialReferenceExportFormat format);
 
-			/// <summary>Determines whether this instance is of the same type and equivalent to the specified <see cref="other"/>.</summary>
+			/// <summary>Determines whether this instance is of the same type and equivalent to the specified <see cref="System::Object"/>.</summary>
+			/// <param name="other">The object to compare with this instance.</param>
 			virtual bool Equals(System::Object^ other) override;
 
 			/// <summary>Determines whether this instance is equivalent to the specified <see cref="SpatialReference"/>.</summary>

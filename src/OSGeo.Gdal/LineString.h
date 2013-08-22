@@ -16,7 +16,7 @@ namespace OSGeo
 			/// <summary>The OGR line string.</summary>
 			OGRLineString* _lineString;
 
-			/// <summary>Supports a simple iteration over <see cref="PointGeometry"/> objects in a <see cref="LineString"/>.</summary>
+			/// <summary>Supports a simple iteration over <see cref="Point"/> objects in a <see cref="LineString"/>.</summary>
 			ref class Enumerator sealed : public Generic::IEnumerator<Point^>
 			{
 			private:
@@ -32,23 +32,23 @@ namespace OSGeo
 				/// <summary>Disposes this instance.</summary>
 				virtual ~Enumerator();
 			internal:
-				/// <summary>Initialises a new instance of the <see cref="PointEnumerator"/> class.</summary>
+				/// <summary>Initialises a new instance of the <see cref="Enumerator"/> class.</summary>
 				Enumerator(OGRLineString* lineString);
 			public:
-				/// <summary>Gets the <see cref="PointGeometry"/> in the <see cref="LineString"/> at the current position of the enumerator.</summary>
+				/// <summary>Gets the <see cref="Point"/> in the <see cref="LineString"/> at the current position of the enumerator.</summary>
 				property Point^ Current { 
 					virtual Point^ get() sealed = Generic::IEnumerator<Point^>::Current::get;
 				};
 
-				/// <summary>Gets the <see cref="PointGeometry"/> in the <see cref="LineString"/> at the current position of the enumerator.</summary>
+				/// <summary>Gets the <see cref="Point"/> in the <see cref="LineString"/> at the current position of the enumerator.</summary>
 				property Object^ CurrentBase { 
 					virtual Object^ get() sealed = System::Collections::IEnumerator::Current::get;
 				};
 
-				/// <summary>Advances the enumerator to the next <see cref="PointGeometry"/> of the <see cref="LineString"/>.</summary>
+				/// <summary>Advances the enumerator to the next <see cref="Point"/> of the <see cref="LineString"/>.</summary>
 				virtual bool MoveNext();
 
-				/// <summary>Sets the enumerator to its initial position, which is before the first <see cref="PointGeometry"/> in the <see cref="LineString"/>.</summary>
+				/// <summary>Sets the enumerator to its initial position, which is before the first <see cref="Point"/> in the <see cref="LineString"/>.</summary>
 				virtual void Reset();
 			};
 		internal:

@@ -55,8 +55,8 @@ namespace OSGeo
 				virtual void Reset();
 			};
 		internal:
-			/// <summary>Initialises a new instance of the <see cref="FieldDefinitionCollection"/> class.</summary>
-			/// <param name="featureDefinition">The OGR feature definition.</param>
+			/// <summary>Initialises a new instance of the <see cref="MultiPolygon"/> class.</summary>
+			/// <param name="multiPolygon">The OGR multi polygon.</param>
 			MultiPolygon(OGRMultiPolygon* multiPolygon);
 		public:
 			/// <summary>Returns an enumerator that iterates through a <see cref="GeometryCollection"/> containing <see cref="Polygon"/> objects.</summary>

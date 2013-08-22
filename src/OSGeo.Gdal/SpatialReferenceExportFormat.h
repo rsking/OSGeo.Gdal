@@ -4,6 +4,8 @@ namespace OSGeo
 {
 	namespace Ogr
 	{
+		ref class SpatialReference;
+
 		/// <summary>The <see cref="SpatialReference"/> export format.</summary>
 		public enum class SpatialReferenceExportFormat : int
 		{

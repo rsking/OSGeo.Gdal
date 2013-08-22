@@ -15,8 +15,9 @@ namespace OSGeo
 			/// <summary>The OGR curve</summary>
 			OGRCurve* _curve;
 		protected:
-			/// <summary><summary>
-			Curve(OGRCurve* surface);
+			/// <summary>Initialises a new instance of the <see cref="Curve"/> class.</summary>
+			/// <param name="curve">The OGR curve.</param>
+			Curve(OGRCurve* curve);
 		public:
 			/// <summary>Gets the length of the curve.</summary>
 			property double Length
