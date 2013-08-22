@@ -15,6 +15,22 @@ int FeatureCollection::Count::get()
 	return this->_layer->GetFeatureCount();
 }
 
+Feature^ FeatureCollection::default::get(long fid)
+{
+	OGRFeature* feature = this->_layer->GetFeature(fid);
+	return feature == NULL ? nullptr : gcnew Feature(feature);
+}
+
+void FeatureCollection::default::set(long fid, Feature^ feature)
+{
+	if (fid != feature->Handle->GetFID())
+	{
+		feature->Handle->SetFID(fid);
+	}
+
+	this->_layer->SetFeature(feature->Handle);
+}
+
 Generic::IEnumerator<Feature^>^ FeatureCollection::GetEnumerator()
 {
 	return gcnew FeatureEnumerator(this->_layer);

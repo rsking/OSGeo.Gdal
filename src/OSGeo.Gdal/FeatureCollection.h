@@ -31,6 +31,13 @@ namespace OSGeo
 			{
 				int get();
 			}
+
+			/// <summary>Gets or sets the feature with the specified FID value.</summary>
+			property Feature^ default[long]
+			{
+				Feature^ get(long fid);
+				void set(long fid, Feature^ feature);
+			}				
 		};
 
 		/// <summary>Supports a simple iteration over <see cref="Feature"/> objects in a <see cref="Layer"/>.</summary>
