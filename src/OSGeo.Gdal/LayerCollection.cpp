@@ -18,31 +18,31 @@ int LayerCollection::Count::get()
 
 Generic::IEnumerator<Layer^>^ LayerCollection::GetEnumerator()
 {
-	return gcnew LayerEnumerator(this->_dataSource);
+	return gcnew Enumerator(this->_dataSource);
 }
 
 IEnumerator^ LayerCollection::GetEnumeratorBase()
 {
-	return gcnew LayerEnumerator(this->_dataSource);
+	return gcnew Enumerator(this->_dataSource);
 }
 
-LayerCollection::LayerEnumerator::LayerEnumerator(OGRDataSource* dataSource)
+LayerCollection::Enumerator::Enumerator(OGRDataSource* dataSource)
 {
 	this->_dataSource = dataSource;
 	this->_currentIndex = -1;
 }
 
-Layer^ LayerCollection::LayerEnumerator::Current::get()
+Layer^ LayerCollection::Enumerator::Current::get()
 {
 	return this->_currentLayer;
 }
 
-Object^ LayerCollection::LayerEnumerator::CurrentBase::get()
+Object^ LayerCollection::Enumerator::CurrentBase::get()
 {
 	return this->Current;
 }
 
-bool LayerCollection::LayerEnumerator::MoveNext()
+bool LayerCollection::Enumerator::MoveNext()
 {
 	this->ReleaseCurrentLayer();
 
@@ -56,19 +56,19 @@ bool LayerCollection::LayerEnumerator::MoveNext()
 	return false;
 }
 
-void LayerCollection::LayerEnumerator::Reset()
+void LayerCollection::Enumerator::Reset()
 {
 	this->ReleaseCurrentLayer();
 	this->_currentIndex = -1;
 }
 
-LayerCollection::LayerEnumerator::~LayerEnumerator()
+LayerCollection::Enumerator::~Enumerator()
 {
 	// make sure we clear the last current layer
 	this->ReleaseCurrentLayer();
 }
 
-void LayerCollection::LayerEnumerator::ReleaseCurrentLayer()
+void LayerCollection::Enumerator::ReleaseCurrentLayer()
 {
 	if (this->_currentLayer != nullptr)
 	{

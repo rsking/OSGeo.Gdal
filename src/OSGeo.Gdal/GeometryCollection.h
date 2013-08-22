@@ -18,7 +18,7 @@ namespace OSGeo
 			OGRGeometryCollection* _geometryCollection;
 
 			/// <summary>Supports a simple iteration over <see cref="Geometry"/> objects in a <see cref="OGRGeometryCollection"/>.</summary>
-			ref class GeometryEnumerator sealed : public Generic::IEnumerator<Geometry^>
+			ref class Enumerator sealed : public Generic::IEnumerator<Geometry^>
 			{
 			private:
 				/// <summary>The current geometry,</summary>
@@ -34,10 +34,10 @@ namespace OSGeo
 				int _currentIndex;
 			internal:
 				/// <summary>Disposes this instance.</summary>
-				virtual ~GeometryEnumerator();
+				virtual ~Enumerator();
 
-				/// <summary>Initialises a new instance of the <see	cref="GeometryEnumerator"/> class.</summary>
-				GeometryEnumerator(OGRGeometryCollection* geometryCollection);
+				/// <summary>Initialises a new instance of the <see	cref="Enumerator"/> class.</summary>
+				Enumerator(OGRGeometryCollection* geometryCollection);
 			public:
 				/// <summary>Gets the <see cref="Geometry"/> in the <see cref="GeometryCollection"/> at the current position of the enumerator.</summary>
 				property Geometry^ Current { 

@@ -17,7 +17,7 @@ namespace OSGeo
 			OGRMultiPoint* _multiPoint;
 
 			/// <summary>Supports a simple iteration over <see cref="Point"/> objects in a <see cref="MultiPoint"/>.</summary>
-			ref class PointEnumerator : public Generic::IEnumerator<Point^>
+			ref class Enumerator : public Generic::IEnumerator<Point^>
 			{
 			private:
 				/// <summary>The current geometry.</summary>
@@ -33,11 +33,11 @@ namespace OSGeo
 				int _currentIndex;
 			
 				/// <summary>Disposes this instance.</summary>
-				virtual ~PointEnumerator();
+				virtual ~Enumerator();
 			internal:
-				/// <summary>Initialises a new instance of the <see cref="PointEnumerator"/> class.</summary>
+				/// <summary>Initialises a new instance of the <see cref="Enumerator"/> class.</summary>
 				/// <param name="multiPoint">The OGR multi-Point.</param>
-				PointEnumerator(OGRMultiPoint* multiPoint);
+				Enumerator(OGRMultiPoint* multiPoint);
 			public:
 				/// <summary>Gets the <see cref="Point"/> in the <see cref="MultiPoint"/> at the current position of the enumerator.</summary>
 				property Point^ Current { 

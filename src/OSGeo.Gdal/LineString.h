@@ -17,7 +17,7 @@ namespace OSGeo
 			OGRLineString* _lineString;
 
 			/// <summary>Supports a simple iteration over <see cref="PointGeometry"/> objects in a <see cref="LineString"/>.</summary>
-			ref class PointEnumerator sealed : public Generic::IEnumerator<Point^>
+			ref class Enumerator sealed : public Generic::IEnumerator<Point^>
 			{
 			private:
 				/// <summary>The current point.</summary>
@@ -30,10 +30,10 @@ namespace OSGeo
 				OGRLineString* _lineString;
 			
 				/// <summary>Disposes this instance.</summary>
-				virtual ~PointEnumerator();
+				virtual ~Enumerator();
 			internal:
-				/// <summary>Initialises a new instance of the <see cref="PointGeometryEnumerator"/> class.</summary>
-				PointEnumerator(OGRLineString* lineString);
+				/// <summary>Initialises a new instance of the <see cref="PointEnumerator"/> class.</summary>
+				Enumerator(OGRLineString* lineString);
 			public:
 				/// <summary>Gets the <see cref="PointGeometry"/> in the <see cref="LineString"/> at the current position of the enumerator.</summary>
 				property Point^ Current { 

@@ -15,12 +15,12 @@ LineString::LineString(OGRLineString* lineString) : Curve(lineString)
 
 System::Collections::Generic::IEnumerator<OSGeo::Ogr::Point^>^ LineString::GetEnumerator()
 {
-	return gcnew PointEnumerator(this->_lineString);
+	return gcnew Enumerator(this->_lineString);
 }
 
 IEnumerator^ LineString::GetEnumeratorBase()
 {
-	return gcnew PointEnumerator(this->_lineString);
+	return gcnew Enumerator(this->_lineString);
 }
 
 int LineString::Count::get()
@@ -106,23 +106,23 @@ void LineString::Insert(int index, Point^ point)
 {
 }
 
-LineString::PointEnumerator::PointEnumerator(OGRLineString* lineString)
+LineString::Enumerator::Enumerator(OGRLineString* lineString)
 {
 	this->_lineString = lineString;
 	this->_currentIndex = -1;
 }
 
-Point^ LineString::PointEnumerator::Current::get()
+Point^ LineString::Enumerator::Current::get()
 {
 	return this->_currentPoint;
 }
 
-System::Object^ LineString::PointEnumerator::CurrentBase::get()
+System::Object^ LineString::Enumerator::CurrentBase::get()
 {
 	return this->Current;
 }
 
-bool LineString::PointEnumerator::MoveNext()
+bool LineString::Enumerator::MoveNext()
 {
 	this->_currentIndex++;
 	if (this->_currentIndex < this->_lineString->getNumPoints())
@@ -136,12 +136,12 @@ bool LineString::PointEnumerator::MoveNext()
 	return false;
 }
 
-void LineString::PointEnumerator::Reset()
+void LineString::Enumerator::Reset()
 {
 	this->_currentIndex = -1;
 }
 
-LineString::PointEnumerator::~PointEnumerator()
+LineString::Enumerator::~Enumerator()
 {
 	// make sure we clear the last current layer
 	this->_currentPoint = nullptr;

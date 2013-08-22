@@ -111,31 +111,31 @@ void FieldDefinitionCollection::Insert(int index, FieldDefinition^ field)
 
 Generic::IEnumerator<FieldDefinition^>^ FieldDefinitionCollection::GetEnumerator()
 {
-	return gcnew FieldDefinitionEnumerator(this->_featureDefinition);
+	return gcnew Enumerator(this->_featureDefinition);
 }
 
 IEnumerator^ FieldDefinitionCollection::GetEnumeratorBase()
 {
-	return gcnew FieldDefinitionEnumerator(this->_featureDefinition);
+	return gcnew Enumerator(this->_featureDefinition);
 }
 
-FieldDefinitionCollection::FieldDefinitionEnumerator::FieldDefinitionEnumerator(OGRFeatureDefn* featureDefinition)
+FieldDefinitionCollection::Enumerator::Enumerator(OGRFeatureDefn* featureDefinition)
 {
 	this->_featureDefinition = featureDefinition;
 	this->Reset();
 }
 
-FieldDefinition^ FieldDefinitionCollection::FieldDefinitionEnumerator::Current::get()
+FieldDefinition^ FieldDefinitionCollection::Enumerator::Current::get()
 {
 	return this->_currentFieldDefinition;
 }
 
-Object^ FieldDefinitionCollection::FieldDefinitionEnumerator::CurrentBase::get()
+Object^ FieldDefinitionCollection::Enumerator::CurrentBase::get()
 {
 	return this->Current;
 }
 
-bool FieldDefinitionCollection::FieldDefinitionEnumerator::MoveNext()
+bool FieldDefinitionCollection::Enumerator::MoveNext()
 {
 	this->ReleaseCurrentFieldDefinition();
 
@@ -149,19 +149,19 @@ bool FieldDefinitionCollection::FieldDefinitionEnumerator::MoveNext()
 	return false;
 }
 
-void FieldDefinitionCollection::FieldDefinitionEnumerator::Reset()
+void FieldDefinitionCollection::Enumerator::Reset()
 {
 	this->ReleaseCurrentFieldDefinition();
 	this->_currentIndex = -1;
 }
 
-FieldDefinitionCollection::FieldDefinitionEnumerator::~FieldDefinitionEnumerator()
+FieldDefinitionCollection::Enumerator::~Enumerator()
 {
 	// make sure we clear the last current layer
 	this->ReleaseCurrentFieldDefinition();
 }
 
-void FieldDefinitionCollection::FieldDefinitionEnumerator::ReleaseCurrentFieldDefinition()
+void FieldDefinitionCollection::Enumerator::ReleaseCurrentFieldDefinition()
 {
 	if (this->_currentFieldDefinition != nullptr)
 	{

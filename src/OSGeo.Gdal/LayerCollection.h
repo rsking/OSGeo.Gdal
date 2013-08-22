@@ -20,7 +20,7 @@ namespace OSGeo
 			OGRDataSource* _dataSource;
 
 			/// <summary></summary>
-			ref class LayerEnumerator sealed : public Generic::IEnumerator<Layer^>
+			ref class Enumerator sealed : public Generic::IEnumerator<Layer^>
 			{
 			private:
 				/// <summary>The current index.</summary>
@@ -36,11 +36,11 @@ namespace OSGeo
 				void ReleaseCurrentLayer();
 			internal:
 				/// <summary>Disposes this instance.</summary>
-				virtual ~LayerEnumerator();
+				virtual ~Enumerator();
 			
-				/// <summary>Initialises a new instance of the <see cref="LayerEnumerator"/> class.</summary>
+				/// <summary>Initialises a new instance of the <see cref="Enumerator"/> class.</summary>
 				/// <param name="layer">The OGR data source.</param>
-				LayerEnumerator(OGRDataSource* _dataSource);
+				Enumerator(OGRDataSource* _dataSource);
 			public:			
 				/// <summary>Gets the <see cref="Layer"/> in the <see cref="DataSource"/> at the current position of the enumerator.</summary>
 				property Layer^ Current { 

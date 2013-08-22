@@ -16,26 +16,26 @@ double MultiPolygon::Area::get()
 
 Generic::IEnumerator<Polygon^>^ MultiPolygon::GetEnumerator()
 {
-	return gcnew PolygonEnumerator(this->_multiPolygon);
+	return gcnew Enumerator(this->_multiPolygon);
 }
 
-MultiPolygon::PolygonEnumerator::PolygonEnumerator(OGRMultiPolygon* multiPolygon)
+MultiPolygon::Enumerator::Enumerator(OGRMultiPolygon* multiPolygon)
 {
 	this->_multiPolygon = multiPolygon;
 	this->Reset();
 }
 
-Polygon^ MultiPolygon::PolygonEnumerator::Current::get()
+Polygon^ MultiPolygon::Enumerator::Current::get()
 {
 	return (Polygon^)this->_currentGeometry;
 }
 
-Object^ MultiPolygon::PolygonEnumerator::CurrentBase::get()
+Object^ MultiPolygon::Enumerator::CurrentBase::get()
 {
 	return this->Current;
 }
 
-bool MultiPolygon::PolygonEnumerator::MoveNext()
+bool MultiPolygon::Enumerator::MoveNext()
 {
 	this->ReleaseCurrentGeometry();
 	_currentIndex++;
@@ -53,19 +53,19 @@ bool MultiPolygon::PolygonEnumerator::MoveNext()
 	return false;
 }
 
-void MultiPolygon::PolygonEnumerator::Reset()
+void MultiPolygon::Enumerator::Reset()
 {
 	this->ReleaseCurrentGeometry();
 	_currentIndex = -1;
 }
 
-MultiPolygon::PolygonEnumerator::~PolygonEnumerator()
+MultiPolygon::Enumerator::~Enumerator()
 {
 	// make sure we clear the current Geometry
 	this->ReleaseCurrentGeometry();
 }
 
-void MultiPolygon::PolygonEnumerator::ReleaseCurrentGeometry()
+void MultiPolygon::Enumerator::ReleaseCurrentGeometry()
 {
 	if (this->_currentGeometry != nullptr)
 	{

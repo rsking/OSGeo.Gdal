@@ -16,26 +16,26 @@ double MultiPoint::Area::get()
 
 Generic::IEnumerator<Point^>^ MultiPoint::GetEnumerator()
 {
-	return gcnew PointEnumerator(this->_multiPoint);
+	return gcnew Enumerator(this->_multiPoint);
 }
 
-MultiPoint::PointEnumerator::PointEnumerator(OGRMultiPoint* multiPoint)
+MultiPoint::Enumerator::Enumerator(OGRMultiPoint* multiPoint)
 {
 	this->_multiPoint = multiPoint;
 	this->Reset();
 }
 
-Point^ MultiPoint::PointEnumerator::Current::get()
+Point^ MultiPoint::Enumerator::Current::get()
 {
 	return (Point^)this->_currentGeometry;
 }
 
-Object^ MultiPoint::PointEnumerator::CurrentBase::get()
+Object^ MultiPoint::Enumerator::CurrentBase::get()
 {
 	return this->Current;
 }
 
-bool MultiPoint::PointEnumerator::MoveNext()
+bool MultiPoint::Enumerator::MoveNext()
 {
 	this->ReleaseCurrentGeometry();
 	_currentIndex++;
@@ -53,19 +53,19 @@ bool MultiPoint::PointEnumerator::MoveNext()
 	return false;
 }
 
-void MultiPoint::PointEnumerator::Reset()
+void MultiPoint::Enumerator::Reset()
 {
 	this->ReleaseCurrentGeometry();
 	_currentIndex = -1;
 }
 
-MultiPoint::PointEnumerator::~PointEnumerator()
+MultiPoint::Enumerator::~Enumerator()
 {
 	// make sure we clear the current Geometry
 	this->ReleaseCurrentGeometry();
 }
 
-void MultiPoint::PointEnumerator::ReleaseCurrentGeometry()
+void MultiPoint::Enumerator::ReleaseCurrentGeometry()
 {
 	if (this->_currentGeometry != nullptr)
 	{

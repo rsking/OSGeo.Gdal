@@ -17,7 +17,7 @@ namespace OSGeo
 			OGRLayer* _layer;
 
 			/// <summary>Supports a simple iteration over <see cref="Feature"/> objects in a <see cref="Layer"/>.</summary>
-			ref class FeatureEnumerator : public Generic::IEnumerator<Feature^>
+			ref class Enumerator : public Generic::IEnumerator<Feature^>
 			{
 			private:
 				/// <summary>The current feature.</summary>
@@ -29,9 +29,9 @@ namespace OSGeo
 				/// <summary>Releases the current feature.</summary>
 				void ReleaseCurrentFeature();
 			internal:
-				/// <summary>Initialises a new instance of the <see cref="FeatureEnumerator"/> class.</summary>
+				/// <summary>Initialises a new instance of the <see cref="Enumerator"/> class.</summary>
 				/// <param name="layer">The OGR layer.</param>
-				FeatureEnumerator(OGRLayer* layer);
+				Enumerator(OGRLayer* layer);
 			public:			
 				/// <summary>Gets the <see cref="Feature"/> in the <see cref="Layer"/> at the current position of the enumerator.</summary>
 				property Feature^ Current { 
@@ -50,7 +50,7 @@ namespace OSGeo
 				virtual void Reset();
 
 				/// <summary>Disposes this instance.</summary>
-				virtual ~FeatureEnumerator();
+				virtual ~Enumerator();
 			};
 		internal:
 			/// <summary>Initialises a new instance of the <see cref="FeatureCollection"/> class.</summary>

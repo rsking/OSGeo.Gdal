@@ -23,7 +23,7 @@ namespace OSGeo
 			Generic::IDictionary<int, FieldDefinition^>^ _fieldDefinitions;
 
 			/// <summary>Supports a simple iteration over <see cref="FieldDefinition"/> objects in a <see cref="FeatureDefinition"/>.</summary>
-			ref class FieldDefinitionEnumerator sealed : public Generic::IEnumerator<FieldDefinition^>
+			ref class Enumerator sealed : public Generic::IEnumerator<FieldDefinition^>
 			{
 			private:
 				/// <summary>The current index.</summary>
@@ -36,14 +36,14 @@ namespace OSGeo
 				OGRFeatureDefn* _featureDefinition;
 
 				/// <summary>Disposes this instance.</summary>
-				virtual ~FieldDefinitionEnumerator();
+				virtual ~Enumerator();
 			
 				/// <summary>Releases the current field definition.</summary>
 				void ReleaseCurrentFieldDefinition();
 			internal:
-				/// <summary>Initialises a new instance of the <see cref="FieldDefinitionEnumerator"/> class.</summary>
+				/// <summary>Initialises a new instance of the <see cref="Enumerator"/> class.</summary>
 				/// <param name="layer">The OGR feature definition.</param>
-				FieldDefinitionEnumerator(OGRFeatureDefn* layer);
+				Enumerator(OGRFeatureDefn* layer);
 			public:		
 				/// <summary>Gets the <see cref="FieldDefinition"/> in the <see cref="FeatureDefinition"/> at the current position of the enumerator.</summary>
 				property FieldDefinition^ Current { 
