@@ -16,6 +16,45 @@ namespace OSGeo
 		private:
 			/// <summary>The geometry collection.</summary>
 			OGRGeometryCollection* _geometryCollection;
+
+			/// <summary>Supports a simple iteration over <see cref="Geometry"/> objects in a <see cref="OGRGeometryCollection"/>.</summary>
+			ref class GeometryEnumerator sealed : public Generic::IEnumerator<Geometry^>
+			{
+			private:
+				/// <summary>The current geometry,</summary>
+				Geometry^ _currentGeometry;
+
+				/// <summary>The geometry collection.</summary>
+				OGRGeometryCollection* _geometryCollection;
+			
+				/// <summary>Releases the current geometry.</summary>
+				void ReleaseCurrentGeometry();
+			
+				/// <summary>The current index.</summary>
+				int _currentIndex;
+			internal:
+				/// <summary>Disposes this instance.</summary>
+				virtual ~GeometryEnumerator();
+
+				/// <summary>Initialises a new instance of the <see	cref="GeometryEnumerator"/> class.</summary>
+				GeometryEnumerator(OGRGeometryCollection* geometryCollection);
+			public:
+				/// <summary>Gets the <see cref="Geometry"/> in the <see cref="GeometryCollection"/> at the current position of the enumerator.</summary>
+				property Geometry^ Current { 
+					virtual Geometry^ get();
+				};
+			
+				/// <summary>Gets the <see cref="Geometry"/> in the <see cref="GeometryCollection"/> at the current position of the enumerator.</summary>
+				property Object^ CurrentBase { 
+					virtual Object^ get() sealed = System::Collections::IEnumerator::Current::get;
+				};
+
+				/// <summary>Advances the enumerator to the next <see cref="Geometry"/> of the <see cref="GeometryCollection"/>.</summary>
+				virtual bool MoveNext();
+
+				/// <summary>Sets the enumerator to its initial position, which is before the first <see cref="Geometry"/> in the <see cref="GeometryCollection"/>.</summary>
+				virtual void Reset();
+			};
 		internal:
 			/// <summary>Initialises a new instance of the <see cref="GeometryCollection"/> class.</summary>
 			/// <param name="featureDefinition">The OGR feature definition.</param>
@@ -32,45 +71,6 @@ namespace OSGeo
 			{
 				int get();
 			}
-		};
-
-		/// <summary>Supports a simple iteration over <see cref="Geometry"/> objects in a <see cref="OGRGeometryCollection"/>.</summary>
-		private ref class GeometryEnumerator sealed : public Generic::IEnumerator<Geometry^>
-		{
-		private:
-			/// <summary>The current geometry,</summary>
-			Geometry^ _currentGeometry;
-
-			/// <summary>The geometry collection.</summary>
-			OGRGeometryCollection* _geometryCollection;
-			
-			/// <summary>Releases the current geometry.</summary>
-			void ReleaseCurrentGeometry();
-			
-			/// <summary>The current index.</summary>
-			int _currentIndex;
-		internal:
-			/// <summary>Disposes this instance.</summary>
-			virtual ~GeometryEnumerator();
-
-			/// <summary>Initialises a new instance of the <see	cref="GeometryEnumerator"/> class.</summary>
-			GeometryEnumerator(OGRGeometryCollection* geometryCollection);
-		public:
-			/// <summary>Gets the <see cref="Geometry"/> in the <see cref="GeometryCollection"/> at the current position of the enumerator.</summary>
-			property Geometry^ Current { 
-				virtual Geometry^ get();
-			};
-			
-			/// <summary>Gets the <see cref="Geometry"/> in the <see cref="GeometryCollection"/> at the current position of the enumerator.</summary>
-			property Object^ CurrentBase { 
-				virtual Object^ get() sealed = System::Collections::IEnumerator::Current::get;
-			};
-
-			/// <summary>Advances the enumerator to the next <see cref="Geometry"/> of the <see cref="GeometryCollection"/>.</summary>
-			virtual bool MoveNext();
-
-			/// <summary>Sets the enumerator to its initial position, which is before the first <see cref="Geometry"/> in the <see cref="GeometryCollection"/>.</summary>
-			virtual void Reset();
 		};
 	}
 }

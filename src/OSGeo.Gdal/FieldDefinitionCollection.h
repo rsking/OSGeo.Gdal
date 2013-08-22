@@ -21,6 +21,46 @@ namespace OSGeo
 
 			/// <summary>The field definitions.</summary>
 			Generic::IDictionary<int, FieldDefinition^>^ _fieldDefinitions;
+
+			/// <summary>Supports a simple iteration over <see cref="FieldDefinition"/> objects in a <see cref="FeatureDefinition"/>.</summary>
+			ref class FieldDefinitionEnumerator sealed : public Generic::IEnumerator<FieldDefinition^>
+			{
+			private:
+				/// <summary>The current index.</summary>
+				int _currentIndex;
+			
+				/// <summary>The current field definition.</summary>
+				FieldDefinition^ _currentFieldDefinition;
+			
+				/// <summary>The feature definition.</summary>
+				OGRFeatureDefn* _featureDefinition;
+
+				/// <summary>Disposes this instance.</summary>
+				virtual ~FieldDefinitionEnumerator();
+			
+				/// <summary>Releases the current field definition.</summary>
+				void ReleaseCurrentFieldDefinition();
+			internal:
+				/// <summary>Initialises a new instance of the <see cref="FieldDefinitionEnumerator"/> class.</summary>
+				/// <param name="layer">The OGR feature definition.</param>
+				FieldDefinitionEnumerator(OGRFeatureDefn* layer);
+			public:		
+				/// <summary>Gets the <see cref="FieldDefinition"/> in the <see cref="FeatureDefinition"/> at the current position of the enumerator.</summary>
+				property FieldDefinition^ Current { 
+					virtual FieldDefinition^ get();
+				};
+					
+				/// <summary>Gets the <see cref="FieldDefinition"/> in the <see cref="FeatureDefinition"/> at the current position of the enumerator.</summary>
+				property Object^ CurrentBase { 
+					virtual Object^ get() sealed = System::Collections::IEnumerator::Current::get;
+				};
+			
+				/// <summary>Advances the enumerator to the next <see cref="FieldDefinition"/> of the <see cref="FeatureDefinition"/>.</summary>
+				virtual bool MoveNext();
+			
+				/// <summary>Sets the enumerator to its initial position, which is before the first <see cref="FieldDefinition"/> in the <see cref="FeatureDefinition"/>.</summary>
+				virtual void Reset();
+			};
 		internal:
 			/// <summary>Initialises a new instance of the <see cref="FieldDefinitionCollection"/> class.</summary>
 			/// <param name="featureDefinition">The OGR feature definition.</param>
@@ -80,46 +120,6 @@ namespace OSGeo
 			
 			/// <summary>Inserts the specified field at the specified index.</summary>
 			virtual void Insert(int index, FieldDefinition^ field);
-		};
-
-		/// <summary>Supports a simple iteration over <see cref="FieldDefinition"/> objects in a <see cref="FeatureDefinition"/>.</summary>
-		private ref class FieldDefinitionEnumerator sealed : public Generic::IEnumerator<FieldDefinition^>
-		{
-		private:
-			/// <summary>The current index.</summary>
-			int _currentIndex;
-			
-			/// <summary>The current field definition.</summary>
-			FieldDefinition^ _currentFieldDefinition;
-			
-			/// <summary>The feature definition.</summary>
-			OGRFeatureDefn* _featureDefinition;
-
-			/// <summary>Disposes this instance.</summary>
-			virtual ~FieldDefinitionEnumerator();
-			
-			/// <summary>Releases the current field definition.</summary>
-			void ReleaseCurrentFieldDefinition();
-		internal:
-			/// <summary>Initialises a new instance of the <see cref="FieldDefinitionEnumerator"/> class.</summary>
-			/// <param name="layer">The OGR feature definition.</param>
-			FieldDefinitionEnumerator(OGRFeatureDefn* layer);
-		public:		
-			/// <summary>Gets the <see cref="FieldDefinition"/> in the <see cref="FeatureDefinition"/> at the current position of the enumerator.</summary>
-			property FieldDefinition^ Current { 
-				virtual FieldDefinition^ get();
-			};
-					
-			/// <summary>Gets the <see cref="FieldDefinition"/> in the <see cref="FeatureDefinition"/> at the current position of the enumerator.</summary>
-			property Object^ CurrentBase { 
-				virtual Object^ get() sealed = System::Collections::IEnumerator::Current::get;
-			};
-			
-			/// <summary>Advances the enumerator to the next <see cref="FieldDefinition"/> of the <see cref="FeatureDefinition"/>.</summary>
-			virtual bool MoveNext();
-			
-			/// <summary>Sets the enumerator to its initial position, which is before the first <see cref="FieldDefinition"/> in the <see cref="FeatureDefinition"/>.</summary>
-			virtual void Reset();
 		};
 	}
 }

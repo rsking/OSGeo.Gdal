@@ -199,7 +199,7 @@
     </ClCompile>
     <ClCompile Include="MultiPoint.cpp">
       <Filter>Source Files\Ogr</Filter>
-    </ClCompile
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.ico">

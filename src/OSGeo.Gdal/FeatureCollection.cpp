@@ -41,22 +41,22 @@ IEnumerator^ FeatureCollection::GetEnumeratorBase()
 	return gcnew FeatureEnumerator(this->_layer);
 }
 
-FeatureEnumerator::FeatureEnumerator(OGRLayer* layer)
+FeatureCollection::FeatureEnumerator::FeatureEnumerator(OGRLayer* layer)
 {
 	this->_layer = layer;
 }
 
-Feature^ FeatureEnumerator::Current::get()
+Feature^ FeatureCollection::FeatureEnumerator::Current::get()
 {
 	return this->_currentFeature;
 }
 
-Object^ FeatureEnumerator::CurrentBase::get()
+Object^ FeatureCollection::FeatureEnumerator::CurrentBase::get()
 {
 	return this->Current;
 }
 
-bool FeatureEnumerator::MoveNext()
+bool FeatureCollection::FeatureEnumerator::MoveNext()
 {
 	this->ReleaseCurrentFeature();
 	OGRFeature* feature = this->_layer->GetNextFeature();
@@ -69,19 +69,19 @@ bool FeatureEnumerator::MoveNext()
 	return false;
 }
 
-void FeatureEnumerator::Reset()
+void FeatureCollection::FeatureEnumerator::Reset()
 {
 	this->ReleaseCurrentFeature();
 	this->_layer->ResetReading();
 }
 
-FeatureEnumerator::~FeatureEnumerator()
+FeatureCollection::FeatureEnumerator::~FeatureEnumerator()
 {
 	// make sure we clear the current feature
 	this->ReleaseCurrentFeature();
 }
 
-void FeatureEnumerator::ReleaseCurrentFeature()
+void FeatureCollection::FeatureEnumerator::ReleaseCurrentFeature()
 {
 	if (this->_currentFeature != nullptr)
 	{

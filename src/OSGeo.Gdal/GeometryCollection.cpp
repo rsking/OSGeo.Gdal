@@ -25,23 +25,23 @@ IEnumerator^ GeometryCollection::GetEnumeratorBase()
 	return gcnew GeometryEnumerator(this->_geometryCollection);
 }
 
-GeometryEnumerator::GeometryEnumerator(OGRGeometryCollection* geometryCollection)
+GeometryCollection::GeometryEnumerator::GeometryEnumerator(OGRGeometryCollection* geometryCollection)
 {
 	this->_geometryCollection = geometryCollection;
 	this->Reset();
 }
 
-Geometry^ GeometryEnumerator::Current::get()
+Geometry^ GeometryCollection::GeometryEnumerator::Current::get()
 {
 	return this->_currentGeometry;
 }
 
-Object^ GeometryEnumerator::CurrentBase::get()
+Object^ GeometryCollection::GeometryEnumerator::CurrentBase::get()
 {
 	return this->Current;
 }
 
-bool GeometryEnumerator::MoveNext()
+bool GeometryCollection::GeometryEnumerator::MoveNext()
 {
 	this->ReleaseCurrentGeometry();
 	_currentIndex++;
@@ -59,19 +59,19 @@ bool GeometryEnumerator::MoveNext()
 	return false;
 }
 
-void GeometryEnumerator::Reset()
+void GeometryCollection::GeometryEnumerator::Reset()
 {
 	this->ReleaseCurrentGeometry();
 	_currentIndex = -1;
 }
 
-GeometryEnumerator::~GeometryEnumerator()
+GeometryCollection::GeometryEnumerator::~GeometryEnumerator()
 {
 	// make sure we clear the current Geometry
 	this->ReleaseCurrentGeometry();
 }
 
-void GeometryEnumerator::ReleaseCurrentGeometry()
+void GeometryCollection::GeometryEnumerator::ReleaseCurrentGeometry()
 {
 	if (this->_currentGeometry != nullptr)
 	{

@@ -119,23 +119,23 @@ IEnumerator^ FieldDefinitionCollection::GetEnumeratorBase()
 	return gcnew FieldDefinitionEnumerator(this->_featureDefinition);
 }
 
-FieldDefinitionEnumerator::FieldDefinitionEnumerator(OGRFeatureDefn* featureDefinition)
+FieldDefinitionCollection::FieldDefinitionEnumerator::FieldDefinitionEnumerator(OGRFeatureDefn* featureDefinition)
 {
 	this->_featureDefinition = featureDefinition;
 	this->Reset();
 }
 
-FieldDefinition^ FieldDefinitionEnumerator::Current::get()
+FieldDefinition^ FieldDefinitionCollection::FieldDefinitionEnumerator::Current::get()
 {
 	return this->_currentFieldDefinition;
 }
 
-Object^ FieldDefinitionEnumerator::CurrentBase::get()
+Object^ FieldDefinitionCollection::FieldDefinitionEnumerator::CurrentBase::get()
 {
 	return this->Current;
 }
 
-bool FieldDefinitionEnumerator::MoveNext()
+bool FieldDefinitionCollection::FieldDefinitionEnumerator::MoveNext()
 {
 	this->ReleaseCurrentFieldDefinition();
 
@@ -149,19 +149,19 @@ bool FieldDefinitionEnumerator::MoveNext()
 	return false;
 }
 
-void FieldDefinitionEnumerator::Reset()
+void FieldDefinitionCollection::FieldDefinitionEnumerator::Reset()
 {
 	this->ReleaseCurrentFieldDefinition();
 	this->_currentIndex = -1;
 }
 
-FieldDefinitionEnumerator::~FieldDefinitionEnumerator()
+FieldDefinitionCollection::FieldDefinitionEnumerator::~FieldDefinitionEnumerator()
 {
 	// make sure we clear the last current layer
 	this->ReleaseCurrentFieldDefinition();
 }
 
-void FieldDefinitionEnumerator::ReleaseCurrentFieldDefinition()
+void FieldDefinitionCollection::FieldDefinitionEnumerator::ReleaseCurrentFieldDefinition()
 {
 	if (this->_currentFieldDefinition != nullptr)
 	{
