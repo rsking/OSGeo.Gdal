@@ -21,7 +21,7 @@ namespace OSGeo
 			{
 			private:
 				/// <summary>The current geometry.</summary>
-				Geometry^ _currentGeometry;
+				LineString^ _currentLineString;
 			
 				/// <summary>The multi LineString.</summary>
 				OGRMultiLineString* _multiLineString;
@@ -61,7 +61,9 @@ namespace OSGeo
 			MultiLineString(OGRMultiLineString* multiLineString);
 		public:
 			/// <summary>Returns an enumerator that iterates through a <see cref="GeometryCollection"/> containing <see cref="LineString"/> objects.</summary>
-			virtual Generic::IEnumerator<LineString^>^ GetEnumerator() new = Generic::IEnumerable<LineString^>::GetEnumerator;
+			virtual Generic::IEnumerator<LineString^>^ GetEnumerator() = Generic::IEnumerable<LineString^>::GetEnumerator;
+			
+			virtual Generic::IEnumerator<Geometry^>^ GetEnumeratorGeometry() override;
 		};
 	}
 }

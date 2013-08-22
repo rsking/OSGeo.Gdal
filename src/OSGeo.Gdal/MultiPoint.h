@@ -61,7 +61,9 @@ namespace OSGeo
 			MultiPoint(OGRMultiPoint* multiPoint);
 		public:
 			/// <summary>Returns an enumerator that iterates through a <see cref="GeometryCollection"/> containing <see cref="Point"/> objects.</summary>
-			virtual Generic::IEnumerator<Point^>^ GetEnumerator() new = Generic::IEnumerable<Point^>::GetEnumerator;
+			virtual Generic::IEnumerator<Point^>^ GetEnumerator() = Generic::IEnumerable<Point^>::GetEnumerator;
+			
+			virtual Generic::IEnumerator<Geometry^>^ GetEnumeratorGeometry() override;
 		};
 	}
 }

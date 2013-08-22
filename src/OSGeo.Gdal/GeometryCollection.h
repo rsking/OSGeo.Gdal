@@ -61,10 +61,10 @@ namespace OSGeo
 			GeometryCollection(OGRGeometryCollection* geometryCollection);
 		public:
 			/// <summary>Returns an enumerator that iterates through a collection containing <see cref="Geometry"/> objects.</summary>
-			virtual Generic::IEnumerator<Geometry^>^ GetEnumerator() sealed = Generic::IEnumerable<Geometry^>::GetEnumerator;
+			virtual Generic::IEnumerator<Geometry^>^ GetEnumeratorGeometry() = Generic::IEnumerable<Geometry^>::GetEnumerator;
 			
 			/// <summary>Returns an enumerator that iterates through a collection containing <see cref="Geometry"/> objects.</summary>
-			virtual IEnumerator^ GetEnumeratorBase() sealed = System::Collections::IEnumerable::GetEnumerator;
+			virtual IEnumerator^ GetEnumeratorBase() = System::Collections::IEnumerable::GetEnumerator;
 			
 			/// <summary>Gets the number of <see cref="Geometry"/> objects in the collection.</summary>
 			property int Count

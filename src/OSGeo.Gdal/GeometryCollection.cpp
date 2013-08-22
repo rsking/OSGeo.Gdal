@@ -15,7 +15,7 @@ int GeometryCollection::Count::get()
 	return this->_geometryCollection->getNumGeometries();
 }
 
-Generic::IEnumerator<Geometry^>^ GeometryCollection::GetEnumerator()
+Generic::IEnumerator<Geometry^>^ GeometryCollection::GetEnumeratorGeometry()
 {
 	return gcnew Enumerator(this->_geometryCollection);
 }

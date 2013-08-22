@@ -1,4 +1,5 @@
 #include "Stdafx.h"
+#include "LineString.h"
 #include "MultiLineString.h"
 
 using namespace System;
@@ -14,6 +15,11 @@ Generic::IEnumerator<LineString^>^ MultiLineString::GetEnumerator()
 	return gcnew Enumerator(this->_multiLineString);
 }
 
+Generic::IEnumerator<Geometry^>^ MultiLineString::GetEnumeratorGeometry()
+{
+	return (Generic::IEnumerator<Geometry^>^)(gcnew Enumerator(this->_multiLineString));
+}
+
 MultiLineString::Enumerator::Enumerator(OGRMultiLineString* multiLineString)
 {
 	this->_multiLineString = multiLineString;
@@ -22,7 +28,7 @@ MultiLineString::Enumerator::Enumerator(OGRMultiLineString* multiLineString)
 
 LineString^ MultiLineString::Enumerator::Current::get()
 {
-	return (LineString^)this->_currentGeometry;
+	return this->_currentLineString;
 }
 
 Object^ MultiLineString::Enumerator::CurrentBase::get()
@@ -40,7 +46,7 @@ bool MultiLineString::Enumerator::MoveNext()
 		OGRGeometry* geometry = this->_multiLineString->getGeometryRef(this->_currentIndex);
 		if (geometry != NULL)
 		{
-			this->_currentGeometry = Geometry::FromGeometry(geometry);
+			this->_currentLineString = (LineString^)Geometry::FromGeometry(geometry);
 			return true;
 		}
 	}
@@ -62,9 +68,9 @@ MultiLineString::Enumerator::~Enumerator()
 
 void MultiLineString::Enumerator::ReleaseCurrentGeometry()
 {
-	if (this->_currentGeometry != nullptr)
+	if (this->_currentLineString != nullptr)
 	{
-		this->_currentGeometry->~Geometry();
-		this->_currentGeometry = nullptr;
+		this->_currentLineString->~LineString();
+		this->_currentLineString = nullptr;
 	}
 }

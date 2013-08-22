@@ -1,5 +1,4 @@
 #include "StdAfx.h"
-#include <msclr/marshal.h>
 #include "Geometry.h"
 #include "GeometryCollection.h"
 #include "Point.h"

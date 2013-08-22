@@ -14,6 +14,11 @@ Generic::IEnumerator<Point^>^ MultiPoint::GetEnumerator()
 	return gcnew Enumerator(this->_multiPoint);
 }
 
+Generic::IEnumerator<Geometry^>^ MultiPoint::GetEnumeratorGeometry()
+{
+	return (Generic::IEnumerator<Geometry^>^)(gcnew Enumerator(this->_multiPoint));
+}
+
 MultiPoint::Enumerator::Enumerator(OGRMultiPoint* multiPoint)
 {
 	this->_multiPoint = multiPoint;

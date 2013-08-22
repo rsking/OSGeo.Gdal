@@ -20,7 +20,7 @@ namespace OSGeo
 			{
 			private:
 				/// <summary>The current geometry.</summary>
-				Geometry^ _currentGeometry;
+				Polygon^ _currentPolygon;
 			
 				/// <summary>The multi polygon.</summary>
 				OGRMultiPolygon* _multiPolygon;
@@ -60,7 +60,11 @@ namespace OSGeo
 			MultiPolygon(OGRMultiPolygon* multiPolygon);
 		public:
 			/// <summary>Returns an enumerator that iterates through a <see cref="GeometryCollection"/> containing <see cref="Polygon"/> objects.</summary>
-			virtual Generic::IEnumerator<Polygon^>^ GetEnumerator() new = Generic::IEnumerable<Polygon^>::GetEnumerator;
+			virtual Generic::IEnumerator<Polygon^>^ GetEnumerator() = Generic::IEnumerable<Polygon^>::GetEnumerator;
+
+			virtual Generic::IEnumerator<Geometry^>^ GetEnumeratorGeometry() override;
+
+			//virtual Generic::IEnumerator<Geometry^>^ GetEnumerator() 
 
 			/// <summary>Gets the area of this instance.</summary>
 			property double Area
