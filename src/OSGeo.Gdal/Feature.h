@@ -27,9 +27,18 @@ namespace OSGeo
 			/// <summary>Finalises this instance.</summary>
 			!Feature();
 
-			/// <summary>Get the bytes from the specified column.</summary>
+			/// <summary>Gets the bytes from the specified column.</summary>
 			array<unsigned char>^ GetBytes(int i);
 		internal:
+			/// <summary>Gets the feature handle.</summary>
+			property OGRFeature* Handle
+			{
+				OGRFeature* get()
+				{
+					return this->_feature;
+				}
+			}
+
 			/// <summary>Initialises a new instance of the <see cref="Feature"/> class from the specified <see cref="OGRFeature"/>.</summary>
 			/// <param name="feature">The OGR Feature.</param>
 			Feature(OGRFeature* feature);
@@ -50,12 +59,14 @@ namespace OSGeo
 			property Object^ Item[int]
 			{
 				virtual Object^ get(int i) = IDataRecord::default::get;
+				void set(int i, Object^ value);
 			}
 			
 			/// <summary>Gets the column with the specified name.</summary>
 			property Object^ Item[String^]
 			{
 				virtual Object^ get(String^ name) = IDataReader::default::get;
+				void set(String^ name, Object^ value);
 			}
 			
 			/// <summary>Gets the value of the specified column as a <see cref="Boolean"/>.</summary>

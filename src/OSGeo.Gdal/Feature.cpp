@@ -7,6 +7,7 @@
 //using namespace OSGeo;
 using namespace System;
 using namespace OSGeo::Ogr;
+using namespace System::Collections::Generic;
 
 Feature::Feature(OGRFeature* feature)
 {
@@ -42,9 +43,92 @@ Object^ Feature::Item::get(int i)
 	return this->GetValue(i);
 }
 
+void Feature::Item::set(int i, Object^ value)
+{
+	Type^ type = value->GetType();
+	if (type == int::typeid)
+	{
+		this->_feature->SetField(i, safe_cast<int>(value));
+		return;
+	}
+	else if (type == double::typeid)
+	{
+		this->_feature->SetField(i, safe_cast<double>(value));
+		return;
+	}
+	else if (type == DateTime::typeid)
+	{
+		DateTime^ temp = safe_cast<DateTime^>(value);
+		this->_feature->SetField(i, temp->Year, temp->Month, temp->Day, temp->Hour, temp->Minute, temp->Second, temp->Kind == System::DateTimeKind::Local ? 1 : temp->Kind == System::DateTimeKind::Utc ? 2 : 0);
+	}
+
+	ICollection<int>^ collectionInt = dynamic_cast<ICollection<int>^>(value);
+	if (collectionInt != nullptr)
+	{
+		int arrayLength = collectionInt->Count;
+		array<int>^ tempArray = gcnew array<int>(arrayLength);
+		collectionInt->CopyTo(tempArray, 0);
+		pin_ptr<int> p1 = &tempArray[0];
+		this->_feature->SetField(i, arrayLength, p1);
+		p1 = nullptr;
+		return;
+	}
+
+	ICollection<double>^ collectionDouble = dynamic_cast<ICollection<double>^>(value);
+	if (collectionDouble != nullptr)
+	{
+		int arrayLength = collectionDouble->Count;
+		array<double>^ tempArray = gcnew array<double>(arrayLength);
+		collectionDouble->CopyTo(tempArray, 0);
+		pin_ptr<double> p1 = &tempArray[0];
+		this->_feature->SetField(i, arrayLength, p1);
+		p1 = nullptr;
+		return;
+	}
+
+	ICollection<String^>^ collectionString = dynamic_cast<ICollection<String^>^>(value);
+	if (collectionString != nullptr)
+	{
+		int arrayLength = collectionString->Count;
+		array<String^>^ tempArray = gcnew array<String^>(arrayLength);
+		collectionString->CopyTo(tempArray, 0);
+		char** stringArray = new char*[arrayLength];
+		for (int i = 0; i < arrayLength; i++)
+		{
+			const char* charValue = StringMarshaller::FromUnicodeString(tempArray[i]);
+			stringArray[i] = const_cast<char*>(charValue);
+		}
+
+		this->_feature->SetField(i, stringArray);
+		return;
+	}
+
+	array<byte>^ byteArray = dynamic_cast<array<byte>^>(value);
+	if (byteArray != nullptr)
+	{
+		pin_ptr<GByte> p1 = &byteArray[0];
+		this->_feature->SetField(i, byteArray->Length, p1);
+		p1 = nullptr;
+		return;
+	}
+
+	String^ stringValue = dynamic_cast<String^>(value);
+	if (stringValue == nullptr)
+	{
+		stringValue = value->ToString();
+	}
+
+	this->_feature->SetField(i, StringMarshaller::FromUnicodeString(stringValue));
+}
+
 Object^ Feature::Item::get(String^ name)
 {
 	return this->GetValue(this->GetOrdinal(name));
+}
+
+void Feature::Item::set(String^ name, Object^ value)
+{
+	this->Item[this->GetOrdinal(name)] = value;
 }
 
 bool Feature::GetBoolean(int i) {
@@ -237,7 +321,7 @@ Object^ Feature::GetValue(int i)
 		{
 			char **stringArray = this->_feature->GetFieldAsStringList(i);
 			int arrayLength = CSLCount(stringArray);
-			array<String^>^ returnArray = gcnew array<String^>(0);
+			array<String^>^ returnArray = gcnew array<String^>(arrayLength);
 			for (int i = 0; i < arrayLength; i++)
 			{
 				returnArray[i] = StringMarshaller::GetStringAsUtf8(stringArray[i]);
