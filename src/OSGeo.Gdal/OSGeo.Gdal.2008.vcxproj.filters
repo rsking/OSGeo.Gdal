@@ -123,6 +123,15 @@
     <ClInclude Include="MultiLineString.h">
       <Filter>Header Files\Ogr</Filter>
     </ClInclude>
+    <ClInclude Include="CoordinateTransformation.h">
+      <Filter>Header Files\Ogr</Filter>
+    </ClInclude>
+    <ClInclude Include="Config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionCollection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp">
@@ -205,6 +214,15 @@
     </ClCompile>
     <ClCompile Include="MultiLineString.cpp">
       <Filter>Source Files\Ogr</Filter>
+    </ClCompile>
+    <ClCompile Include="CoordinateTransformation.cpp">
+      <Filter>Source Files\Ogr</Filter>
+    </ClCompile>
+    <ClCompile Include="Config.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionCollection.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

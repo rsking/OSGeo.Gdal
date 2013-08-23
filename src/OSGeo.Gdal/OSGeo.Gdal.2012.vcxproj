@@ -90,7 +90,6 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalIncludeDirectories>$(SolutionDir)..\lib\external\Gdal\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
-      <CompileAsManaged>true</CompileAsManaged>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -143,6 +142,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Config.h" />
+    <ClInclude Include="CoordinateTransformation.h" />
     <ClInclude Include="Curve.h" />
     <ClInclude Include="DataSourceCapabilities.h" />
     <ClInclude Include="Driver.h" />
@@ -168,6 +169,7 @@
     <ClInclude Include="MultiLineString.h" />
     <ClInclude Include="MultiPoint.h" />
     <ClInclude Include="MultiPolygon.h" />
+    <ClInclude Include="OptionCollection.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="Polygon.h" />
     <ClInclude Include="resource.h" />
@@ -180,6 +182,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
+    <ClCompile Include="Config.cpp" />
+    <ClCompile Include="CoordinateTransformation.cpp" />
     <ClCompile Include="Curve.cpp" />
     <ClCompile Include="DataSource.cpp" />
     <ClCompile Include="Driver.cpp" />
@@ -200,6 +204,7 @@
     <ClCompile Include="MultiLineString.cpp" />
     <ClCompile Include="MultiPoint.cpp" />
     <ClCompile Include="MultiPolygon.cpp" />
+    <ClCompile Include="OptionCollection.cpp" />
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="Polygon.cpp" />
     <ClCompile Include="SpatialReference.cpp" />
