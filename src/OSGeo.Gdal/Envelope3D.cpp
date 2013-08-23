@@ -58,10 +58,10 @@ void Envelope3D::Intersect(Envelope3D^ other)
 
 bool Envelope3D::Intersects(Envelope3D^ other)
 {
-	return this->_envelope->Intersects(*other->_envelope);
+	return this->_envelope->Intersects(*other->_envelope) != FALSE;
 }
 			
 bool Envelope3D::Contains(Envelope3D^ other)
 {
-	return this->_envelope->Contains(*other->_envelope);
+	return this->_envelope->Contains(*other->_envelope) != FALSE;
 }
