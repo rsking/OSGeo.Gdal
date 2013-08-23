@@ -1,5 +1,6 @@
 #include "Stdafx.h"
 #include "MultiPoint.h"
+#include "Point.h"
 
 using namespace System;
 using namespace OSGeo::Ogr;
@@ -27,7 +28,7 @@ MultiPoint::Enumerator::Enumerator(OGRMultiPoint* multiPoint)
 
 Point^ MultiPoint::Enumerator::Current::get()
 {
-	return (Point^)this->_currentGeometry;
+	return this->_currentPoint;
 }
 
 Object^ MultiPoint::Enumerator::CurrentBase::get()
@@ -45,7 +46,7 @@ bool MultiPoint::Enumerator::MoveNext()
 		OGRGeometry* geometry = this->_multiPoint->getGeometryRef(this->_currentIndex);
 		if (geometry != NULL)
 		{
-			this->_currentGeometry = Geometry::FromGeometry(geometry);
+			this->_currentPoint = (Point^)Geometry::FromGeometry(geometry);
 			return true;
 		}
 	}
@@ -67,9 +68,9 @@ MultiPoint::Enumerator::~Enumerator()
 
 void MultiPoint::Enumerator::ReleaseCurrentGeometry()
 {
-	if (this->_currentGeometry != nullptr)
+	if (this->_currentPoint != nullptr)
 	{
-		this->_currentGeometry->~Geometry();
-		this->_currentGeometry = nullptr;
+		this->_currentPoint->~Point();
+		this->_currentPoint = nullptr;
 	}
 }

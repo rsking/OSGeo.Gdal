@@ -21,7 +21,7 @@ namespace OSGeo
 			{
 			private:
 				/// <summary>The current geometry.</summary>
-				Geometry^ _currentGeometry;
+				Point^ _currentPoint;
 			
 				/// <summary>The multi Point.</summary>
 				OGRMultiPoint* _multiPoint;
