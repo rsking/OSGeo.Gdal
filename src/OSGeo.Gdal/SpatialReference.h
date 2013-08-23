@@ -39,6 +39,10 @@ namespace OSGeo
 			/// <param name="format">The format of <paramref name="text"/>.</param>
 			static SpatialReference^ FromText(System::String^ text, SpatialReferenceImportFormat format);
 
+			/// <summary>Creates a new <see cref="SpatialReference"/> from the EPSG code</summary>
+			/// <param name="epsg">The EPSG code.</param>
+			static SpatialReference^ FromEpsg(int epsg);
+
 			/// <summary>References this instance.</summary>
 			int Reference();
 

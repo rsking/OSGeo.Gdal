@@ -1,6 +1,7 @@
 #include "StdAfx.h"
 #include <msclr/marshal.h>
 #include "SpatialReference.h"
+#include "GdalException.h"
 
 using namespace System;
 using namespace OSGeo::Ogr;
@@ -36,10 +37,22 @@ SpatialReference^ SpatialReference::FromOGRSpatialReference(OGRSpatialReference*
 	return nullptr;
 }
 
+SpatialReference^ SpatialReference::FromEpsg(int epsg)
+{
+	OGRSpatialReference* srs = new OGRSpatialReference(NULL);
+	OGRErr error =  srs->importFromEPSGA(epsg);
+	if (error != OGRERR_NONE)
+	{
+		throw GdalException::Create(error);
+	}
+
+	return gcnew SpatialReference(srs);
+}
+
 SpatialReference^ SpatialReference::FromText(System::String^ text, SpatialReferenceImportFormat format)
 {
 	OGRSpatialReference* srs = new OGRSpatialReference(0);
-	msclr::interop::marshal_context cxt;
+	msclr::interop::marshal_context ctx;
 
 	switch (format)
 	{
@@ -50,9 +63,10 @@ SpatialReference^ SpatialReference::FromText(System::String^ text, SpatialRefere
 			srs->importFromWkt(&charArray);
 			Runtime::InteropServices::Marshal::FreeHGlobal(pointer);
 		}
+
 		break;
 	case OSGeo::Ogr::SpatialReferenceImportFormat::Proj4:
-		srs->importFromProj4(cxt.marshal_as<const char *>(text));
+		srs->importFromProj4(ctx.marshal_as<const char *>(text));
 		break;
 	case OSGeo::Ogr::SpatialReferenceImportFormat::Esri:
 		{
@@ -61,27 +75,28 @@ SpatialReference^ SpatialReference::FromText(System::String^ text, SpatialRefere
 			srs->importFromESRI(&charArray);
 			Runtime::InteropServices::Marshal::FreeHGlobal(pointer);
 		}
+
 		break;
 	case OSGeo::Ogr::SpatialReferenceImportFormat::Pci:
-		srs->importFromPCI(cxt.marshal_as<const char *>(text));
+		srs->importFromPCI(ctx.marshal_as<const char *>(text));
 		break;
 	case OSGeo::Ogr::SpatialReferenceImportFormat::WmsAuto:
-		srs->importFromWMSAUTO(cxt.marshal_as<const char *>(text));
+		srs->importFromWMSAUTO(ctx.marshal_as<const char *>(text));
 		break;
 	case OSGeo::Ogr::SpatialReferenceImportFormat::Xml:
-		srs->importFromXML(cxt.marshal_as<const char *>(text));
+		srs->importFromXML(ctx.marshal_as<const char *>(text));
 		break;
 	case OSGeo::Ogr::SpatialReferenceImportFormat::Urn:
-		srs->importFromURN(cxt.marshal_as<const char *>(text));
+		srs->importFromURN(ctx.marshal_as<const char *>(text));
 		break;
 	case OSGeo::Ogr::SpatialReferenceImportFormat::Url:
-		srs->importFromUrl(cxt.marshal_as<const char *>(text));
+		srs->importFromUrl(ctx.marshal_as<const char *>(text));
 		break;
 	case OSGeo::Ogr::SpatialReferenceImportFormat::MapInfo:
-		srs->importFromMICoordSys(cxt.marshal_as<const char *>(text));
+		srs->importFromMICoordSys(ctx.marshal_as<const char *>(text));
 		break;
 	}
-
+	
 	return gcnew SpatialReference(srs);
 }
 
