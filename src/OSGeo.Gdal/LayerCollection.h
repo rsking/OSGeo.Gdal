@@ -10,6 +10,7 @@ namespace OSGeo
 	namespace Ogr
 	{
 		ref class Layer;
+		ref class DataSource;
 
 		/// <summary>Represents a collection of <see cref="Layer"/> objects in a <see cref="DataSource"/>.</summary>
 		[System::Diagnostics::DebuggerDisplay("Count = {Count}")]
@@ -39,8 +40,8 @@ namespace OSGeo
 				virtual ~Enumerator();
 			
 				/// <summary>Initialises a new instance of the <see cref="Enumerator"/> class.</summary>
-				/// <param name="layer">The OGR data source.</param>
-				Enumerator(OGRDataSource* _dataSource);
+				/// <param name="dataSource">The OGR data source.</param>
+				Enumerator(OGRDataSource* dataSource);
 			public:			
 				/// <summary>Gets the <see cref="Layer"/> in the <see cref="DataSource"/> at the current position of the enumerator.</summary>
 				property Layer^ Current { 

@@ -8,6 +8,8 @@ namespace OSGeo
 {
 	namespace Ogr
 	{
+		ref class Layer;
+
 		/// <summary>Represents a collection of features.</summary>
 		[System::Diagnostics::DebuggerDisplay("Count = {Count}")]
 		public ref class FeatureCollection sealed : public Generic::IEnumerable<Feature^>

@@ -4,6 +4,8 @@ namespace OSGeo
 {
 	namespace Ogr
 	{
+		ref class Layer;
+
 		/// <summary>The <see cref="Layer"/> capabilities.</summary>
 		[System::Flags]
 		public enum class LayerCapabilities : int
@@ -50,7 +52,7 @@ namespace OSGeo
 			/// <summary>Supports fast index setting.</summary>
 			FastSetNextByIndex = 0x1000,
 
-			/// <summary>Returns string as <see cref="System.Text.Encoding.UTF8"/>.</summary>
+			/// <summary>Returns string as <see cref="System::Text::Encoding::UTF8"/>.</summary>
 			StringsAsUTF8 = 0x2000,
 
 			/// <summary>Can ignore fields.</summary>
