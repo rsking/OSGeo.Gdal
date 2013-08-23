@@ -2,6 +2,7 @@
 #include <msclr/marshal.h>
 #include "DataSource.h"
 #include "Driver.h"
+#include "GdalException.h"
 
 using namespace OSGeo::Ogr;
 
@@ -29,6 +30,7 @@ DataSource^ Driver::Open(String^ name)
 	OGRDataSource *poDS;
 	char const* input = cxt.marshal_as<char const*>(name);
 	poDS = this->_driver->Open(input, FALSE);
+	poDS->SetDriver(this->_driver);
 	return gcnew OSGeo::Ogr::DataSource(poDS);
 }
 
@@ -57,6 +59,10 @@ void Driver::DeleteDataSource(String^ name)
 	msclr::interop::marshal_context cxt;
 	char const* input = cxt.marshal_as<char const*>(name);
 	OGRErr errorValue = this->_driver->DeleteDataSource(input);
+	if (errorValue != OGRERR_NONE)
+	{
+		throw OSGeo::GdalException::Create(errorValue);
+	}
 }
 
 Driver^ Driver::FromName(String^ name)
