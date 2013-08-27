@@ -73,8 +73,7 @@ OGRDataSource* DataSource::Handle::get()
 String^ DataSource::Name::get()
 {
 	const char* name = this->_dataSource->GetName();
-	msclr::interop::marshal_context cxt;
-	return cxt.marshal_as<String^>(name);
+	return msclr::interop::marshal_as<String^>(name);
 }
 
 LayerCollection^ DataSource::Layers::get()

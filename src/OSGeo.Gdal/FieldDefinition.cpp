@@ -10,16 +10,20 @@ FieldDefinition::FieldDefinition(OGRFieldDefn* fieldDefinition)
 	this->_fieldDefinition = fieldDefinition;
 }
 
-String^ FieldDefinition::GetName(FieldType fieldType)
+FieldDefinition::FieldDefinition(String^ name, FieldType type)
 {
 	msclr::interop::marshal_context ctx;
-	return ctx.marshal_as<String^>(OGRFieldDefn::GetFieldTypeName((OGRFieldType)fieldType));
+	this->_fieldDefinition = new OGRFieldDefn(ctx.marshal_as<const char *>(name), (OGRFieldType)type);
+}
+
+String^ FieldDefinition::GetName(FieldType fieldType)
+{
+	return msclr::interop::marshal_as<String^>(OGRFieldDefn::GetFieldTypeName((OGRFieldType)fieldType));
 }
 
 String^ FieldDefinition::Name::get()
 {
-	msclr::interop::marshal_context ctx;
-	return ctx.marshal_as<String^>(this->_fieldDefinition->GetNameRef());
+	return msclr::interop::marshal_as<String^>(this->_fieldDefinition->GetNameRef());
 }
 
 void FieldDefinition::Name::set(String^ value)

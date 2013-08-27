@@ -79,8 +79,7 @@ Driver^ Driver::FromName(String^ name)
 String^ Driver::Name::get()
 {
 	const char* name = this->_driver->GetName();
-	msclr::interop::marshal_context cxt;
-	return cxt.marshal_as<String^>(name);
+	return msclr::interop::marshal_as<String^>(name);
 }
 
 OGRSFDriver* Driver::Handle::get()

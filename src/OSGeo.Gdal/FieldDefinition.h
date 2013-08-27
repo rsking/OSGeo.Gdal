@@ -20,6 +20,11 @@ namespace OSGeo
 			/// <param name="fieldDefinition">The field definition.</param>
 			FieldDefinition(OGRFieldDefn* fieldDefinition);
 		public:
+			/// <summary>Initialises a new instance of the <see cref="FieldDefinition"/> class.</summary>
+			/// <param name="name">The field name.</param>
+			/// <param name="type">The field type.</param>
+			FieldDefinition(String^ name, FieldType type);
+
 			/// <summary>Gets a human readable name for a field type.</summary>
 			/// <param name="fieldType">The field type.</param>
 			static String^ GetName(FieldType fieldType);
