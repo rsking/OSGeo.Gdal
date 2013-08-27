@@ -47,6 +47,22 @@ void CoordinateTransformation::Transform(System::Collections::Generic::IList<Poi
 	}
 }
 
+void CoordinateTransformation::Transform(array<double>^ point)
+{
+	double x[] = { point[0] };
+	double y[] = { point[1] };
+	double z[] = { point->Length > 2 ? point[2] : 0 };
+
+	this->_coordinateTransformation->Transform(1, x, y, point->Length > 2 ? z : NULL);
+
+	point[0] = x[0];
+	point[1] = y[0];
+	if (point->Length > 2)
+	{
+		point[2] = z[0];
+	}
+}
+
 SpatialReference^ CoordinateTransformation::Source::get()
 {
 	return this->_source;

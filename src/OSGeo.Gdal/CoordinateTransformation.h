@@ -22,6 +22,8 @@ namespace OSGeo
 
 			void Transform(System::Collections::Generic::IList<Point^>^ points);
 
+			void Transform(array<double>^ point);
+
 			property SpatialReference^ Source
 			{
 				SpatialReference^ get();
