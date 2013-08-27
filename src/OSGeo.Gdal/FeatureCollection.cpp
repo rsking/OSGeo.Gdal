@@ -31,6 +31,11 @@ void FeatureCollection::default::set(long fid, Feature^ feature)
 	this->_layer->SetFeature(feature->Handle);
 }
 
+void FeatureCollection::Add(Feature^ feature)
+{
+	this->_layer->CreateFeature(feature->Handle);
+}
+
 Generic::IEnumerator<Feature^>^ FeatureCollection::GetEnumerator()
 {
 	return gcnew Enumerator(this->_layer);
@@ -44,6 +49,9 @@ IEnumerator^ FeatureCollection::GetEnumeratorBase()
 FeatureCollection::Enumerator::Enumerator(OGRLayer* layer)
 {
 	this->_layer = layer;
+
+	// make sure we reset the reading
+	this->_layer->ResetReading();
 }
 
 Feature^ FeatureCollection::Enumerator::Current::get()
@@ -58,14 +66,22 @@ Object^ FeatureCollection::Enumerator::CurrentBase::get()
 
 bool FeatureCollection::Enumerator::MoveNext()
 {
+	// release the current feature
 	this->ReleaseCurrentFeature();
+
+	// get the next feature
 	OGRFeature* feature = this->_layer->GetNextFeature();
+
 	if (feature != NULL)
 	{
+		// we have a feature.
 		this->_currentFeature = gcnew Feature(feature);
+
+		// return success
 		return true;
 	}
 
+	// return failure
 	return false;
 }
 

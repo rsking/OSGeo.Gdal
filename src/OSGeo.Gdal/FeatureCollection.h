@@ -77,6 +77,9 @@ namespace OSGeo
 				Feature^ get(long fid);
 				void set(long fid, Feature^ feature);
 			}				
+
+			/// <summary>Adds a new feature.</summary>
+			void Add(Feature^ feature);
 		};
 	}
 }
