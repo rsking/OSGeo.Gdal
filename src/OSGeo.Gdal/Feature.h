@@ -10,6 +10,7 @@ namespace OSGeo
 	namespace Ogr
 	{
 		ref class Geometry;
+		ref class FeatureDefinition;
 
 		/// <summary>Represents a OGR Feature.</summary>
 		public ref class Feature sealed : public IDataRecord
@@ -43,10 +44,15 @@ namespace OSGeo
 			/// <param name="feature">The OGR Feature.</param>
 			Feature(OGRFeature* feature);
 		public:
+			/// <summary>Initialises a new instance of the <see cref="Feature"/> class with the specified <see cref="FeatureDefinition"/>.</summary>
+			/// <param name="featureDefinition">The feature definition.</param>
+			Feature(FeatureDefinition^ featureDefinition);
+
 			/// <summary>Gets the geometry associated with this instance.</summary>
 			property Geometry^ Geometry
 			{
 				OSGeo::Ogr::Geometry^ get();
+				void set(OSGeo::Ogr::Geometry^ geometry);
 			}
 			
 			/// <summary>Gets the number of columns in the current feature.</summary>
@@ -55,14 +61,21 @@ namespace OSGeo
 				virtual int get();
 			}
 			
-			/// <summary>Gets the column located at the specified index.</summary>
+			/// <summary>Gets or sets the FID.</summary>
+			property long Fid
+			{
+				long get();
+				void set(long value);
+			}
+			
+			/// <summary>Gets or sets the column located at the specified index.</summary>
 			property Object^ Item[int]
 			{
 				virtual Object^ get(int i) = IDataRecord::default::get;
 				void set(int i, Object^ value);
 			}
 			
-			/// <summary>Gets the column with the specified name.</summary>
+			/// <summary>Gets or sets the column with the specified name.</summary>
 			property Object^ Item[String^]
 			{
 				virtual Object^ get(String^ name) = IDataReader::default::get;

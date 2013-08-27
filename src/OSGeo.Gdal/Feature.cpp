@@ -3,20 +3,40 @@
 #include "Feature.h"
 #include "Geometry.h"
 #include "StringMarshaller.h"
+#include "FeatureDefinition.h"
 
-//using namespace OSGeo;
 using namespace System;
-using namespace OSGeo::Ogr;
 using namespace System::Collections::Generic;
+using namespace OSGeo::Ogr;
 
 Feature::Feature(OGRFeature* feature)
 {
 	this->_feature = feature;
 }
 
+Feature::Feature(FeatureDefinition^ featureDefinition)
+{
+	OGRFeature* feature = new OGRFeature(featureDefinition->Handle);
+}
+
+long Feature::Fid::get()
+{
+	return this->_feature->GetFID();
+}
+
+void Feature::Fid::set(long value)
+{
+	this->_feature->SetFID(value);
+}
+
 Geometry^ Feature::Geometry::get()
 {
 	return this->_geometry == nullptr ? this->_geometry = OSGeo::Ogr::Geometry::FromGeometry(this->_feature->GetGeometryRef()) : this->_geometry;
+}
+
+void Feature::Geometry::set(OSGeo::Ogr::Geometry^ value)
+{
+	this->_feature->SetGeometry(value->Handle);
 }
 
 Feature::~Feature()
@@ -62,7 +82,7 @@ void Feature::Item::set(int index, Object^ value)
 		this->_feature->SetField(index, temp->Year, temp->Month, temp->Day, temp->Hour, temp->Minute, temp->Second, temp->Kind == System::DateTimeKind::Local ? 1 : temp->Kind == System::DateTimeKind::Utc ? 2 : 0);
 	}
 
-	ICollection<int>^ collectionInt = dynamic_cast<ICollection<int>^>(value);
+	System::Collections::Generic::ICollection<int>^ collectionInt = dynamic_cast<System::Collections::Generic::ICollection<int>^>(value);
 	if (collectionInt != nullptr)
 	{
 		int arrayLength = collectionInt->Count;
@@ -74,7 +94,7 @@ void Feature::Item::set(int index, Object^ value)
 		return;
 	}
 
-	ICollection<double>^ collectionDouble = dynamic_cast<ICollection<double>^>(value);
+	System::Collections::Generic::ICollection<double>^ collectionDouble = dynamic_cast<System::Collections::Generic::ICollection<double>^>(value);
 	if (collectionDouble != nullptr)
 	{
 		int arrayLength = collectionDouble->Count;
@@ -86,7 +106,7 @@ void Feature::Item::set(int index, Object^ value)
 		return;
 	}
 
-	ICollection<String^>^ collectionString = dynamic_cast<ICollection<String^>^>(value);
+	System::Collections::Generic::ICollection<String^>^ collectionString = dynamic_cast<System::Collections::Generic::ICollection<String^>^>(value);
 	if (collectionString != nullptr)
 	{
 		int arrayLength = collectionString->Count;
@@ -265,12 +285,13 @@ long long Feature::GetInt64(int i)
 String^ Feature::GetName(int i)
 {
 	const char* fieldName = this->_feature->GetFieldDefnRef(i)->GetNameRef();
-	return StringMarshaller::GetStringAsUtf8(fieldName);
+	return msclr::interop::marshal_as<String^>(fieldName);
 }
 
 int Feature::GetOrdinal(System::String^ name)
 {
-	const char* fieldName = StringMarshaller::FromUnicodeString(name);
+	msclr::interop::marshal_context ctx;
+	const char* fieldName = ctx.marshal_as<const char *>(name);
 	return this->_feature->GetFieldIndex(fieldName);
 }
 
